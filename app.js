@@ -106,40 +106,52 @@ const displayForm = async () => {
 
             questionDiv.innerHTML = `
             <label class="statement">${question.question}</label>
-                <div class="custom-radios d-grid-5">
+                <div class="custom-radios d-grid-6">
+                        <div>
+                        <input type="radio" id=${pageIndex}-${key}-1 class="color-1" name=mark-${pageIndex}-${key} value="0" />
+                        <label for=${pageIndex}-${key}-1 >
+                            <span><img src="check.svg" alt="Checked Icon" /></span>
+                            <p>Not applicable</p>
+                        </label>
+                    </div>                       
+                
                     <div>
                         <input type="radio" id=${pageIndex}-${key}-1 class="color-1" name=mark-${pageIndex}-${key} value="5" />
                         <label for=${pageIndex}-${key}-1 >
                             <span><img src="check.svg" alt="Checked Icon" /></span>
-                            <p>Very Satisfied</p>
+                            <p>Strongly agree 
+                            </p>
                         </label>
                     </div>
                     <div>
                         <input type="radio" id=${pageIndex}-${key}-2  class="color-2" name=mark-${pageIndex}-${key} value="4" />
                         <label for=${pageIndex}-${key}-2 >
                                <span><img src="check.svg" alt="Checked Icon" /></span>
-                            <p>Satisfied</p>
+                            <p>Agree</p>
                         </label>
                     </div>
                     <div>
                         <input type="radio" id=${pageIndex}-${key}-3  class="color-3" name=mark-${pageIndex}-${key} value="3" />
                         <label for=${pageIndex}-${key}-3 >
                                <span><img src="check.svg" alt="Checked Icon" /></span>
-                            <p>Neutral</p>
+                            <p>Slightly agree
+ 
+                            </p>
                         </label>
                     </div>
                     <div>
                         <input type="radio" id=${pageIndex}-${key}-4 class="color-4" name=mark-${pageIndex}-${key} value="2" />
                         <label for=${pageIndex}-${key}-4>
                                <span><img src="check.svg" alt="Checked Icon" /></span>
-                            <p>Unsatisfied</p>
+                            <p>Disagree</p>
                         </label>
                     </div>
                     <div>
                         <input type="radio" id=${pageIndex}-${key}-5 class="color-5" name=mark-${pageIndex}-${key} value="1" />
                         <label for=${pageIndex}-${key}-5>
                                <span><img src="check.svg" alt="Checked Icon" /></span>
-                            <p>Very Unsatisfied</p>
+                            <p>Strongly disagree (we don’t do that)
+                            </p>
                         </label>
                     </div>
                 </div>

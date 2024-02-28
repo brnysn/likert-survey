@@ -64,9 +64,13 @@ h6 {
 
 .d-grid-5 {
     display: grid;
-    grid-template-columns: repeat(5, 1fr);
+    grid-template-columns: repeat(6, 1fr);
     justify-items: center;
     margin: 10px 0;
+}
+
+.d-grid-5 div h4 {
+    text-align: center;
 }
 
 .wrap {
@@ -77,7 +81,7 @@ h6 {
 .statement-custom-radios {
     display: flex;
     flex-direction: column;
-    padding: 20px;
+    padding: 10px;
     border-radius: 10px;
 }
 
@@ -108,6 +112,7 @@ h6 {
 .custom-radios input[type="radio"] {
     display: none;
 }
+
 .custom-radios input[type="radio"] + label {
     color: #333;
     font-family: Arial, sans-serif;
@@ -115,6 +120,7 @@ h6 {
     display: flex;
     cursor: pointer;
     margin-block: 10px;
+    align-items: center;
 }
 
 .custom-radios input[type="radio"] + label:hover {
@@ -122,6 +128,7 @@ h6 {
     font-weight: 700;
     transition: all 0.3s ease;
 }
+
 .custom-radios input[type="radio"] + label span {
     width: 20px;
     height: 20px;
@@ -152,29 +159,17 @@ h6 {
     top: -1px;
     left: 1px;
 }
-/* .custom-radios input[type="radio"].color-1 + label span {
-    background-color: #2ecc71;
-}
-.custom-radios input[type="radio"].color-2 + label span {
-    background-color: #3498db;
-}
-.custom-radios input[type="radio"].color-3 + label span {
-    background-color: rgb(228, 228, 19);
-}
-.custom-radios input[type="radio"].color-4 + label span {
-    background-color: orange;
-}
-.custom-radios input[type="radio"].color-5 + label span {
-    background-color: #e74c3c;
-} */
+
 .custom-radios input[type="radio"]:checked + label span img {
     opacity: 1;
 }
+
 .custom-radios input[type="radio"]:checked + label span {
     text-indent: 100%;
     white-space: nowrap;
     overflow: hidden;
 }
+
 form {
     margin-block: 40px;
 }
@@ -223,6 +218,9 @@ form button:disabled:hover {
     .d-none {
         display: none;
     }
+    .d-grid-5 {
+        gap: 10px;
+    }
 }
 @media (min-width: 768px) {
     .d-md-none {
@@ -231,13 +229,15 @@ form button:disabled:hover {
 
     .custom-radios {
         display: grid;
-        grid-template-columns: repeat(5, 1fr);
-        gap: 10px;
+        grid-template-columns: repeat(6, 1fr);
         margin: 10px 0;
+        justify-items: center;
     }
+
     .custom-radios input[type="radio"] + label p {
         display: none;
     }
+
     .d-grid-2,
     .statement-custom-radios {
         align-items: center;
@@ -250,11 +250,17 @@ form button:disabled:hover {
     .d-grid-5 {
         align-items: center;
     }
+
     .survey-form-infos {
         width: 50%;
     }
 }
 
+@media (max-width: 992px) {
+    .wrap {
+        max-width: 90%;
+    }
+}
 @media (min-width: 992px) {
     .d-grid-2,
     .statement-custom-radios {

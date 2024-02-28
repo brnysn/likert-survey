@@ -12,6 +12,7 @@
                 padding: 0;
                 box-sizing: border-box;
             }
+
             html,
             body {
                 height: 100%;
@@ -25,6 +26,7 @@
                 margin-inline: auto;
                 width: 93vw;
             }
+
             input {
                 position: absolute;
                 left: 0;
@@ -34,6 +36,7 @@
                 opacity: 0;
                 visibility: 0;
             }
+
             div.child {
                 background: white;
                 color: black;
@@ -43,12 +46,19 @@
                 display: block;
                 margin-inline: auto;
             }
+
+            input:checked ~ div.child {
+                border-bottom-left-radius: 0px;
+                border-bottom-right-radius: 0px;
+            }
+
             label::before {
                 content: "";
                 display: inline-block;
                 border: 10px solid transparent;
                 border-left: 10px solid rgb(131, 131, 131);
             }
+
             label {
                 cursor: pointer;
                 position: relative;
@@ -63,21 +73,12 @@
                 overflow: hidden;
                 transition: max-height 0.5s;
                 background-color: white;
-                box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2);
             }
+
             div.p p {
                 padding: 1rem;
             }
-            input:checked ~ div.child label::before {
-                border-left: 10px solid transparent;
-                border-top: 10px solid rgb(131, 131, 131);
-                margin-top: 12px;
-                margin-right: 10px;
-            }
-            input:checked ~ div.child ~ div.category-chart {
-                max-height: 30vh;
-                border-radius: 10px;
-            }
+
             .chartPage > div.category-chart,
             input:checked ~ div.child ~ div.category-chart {
                 padding: 1rem;
@@ -94,6 +95,25 @@
                 width: 93vw;
                 border-radius: 10px;
                 background-color: white;
+            }
+
+            .factor-chart {
+                height: 30vh;
+                width: 93vw;
+            }
+
+            input:checked ~ div.child label::before {
+                border-left: 10px solid transparent;
+                border-top: 10px solid rgb(131, 131, 131);
+                margin-top: 12px;
+                margin-right: 10px;
+            }
+
+            input:checked ~ div.child ~ div.category-chart {
+                max-height: 100%;
+                height: 100%;
+                border-top-left-radius: 0px;
+                border-top-right-radius: 0px;
             }
 
             .chartPage div:has(h1) {
@@ -119,6 +139,41 @@
 
             .footer {
                 width: 93vw;
+            }
+
+            .factor-chart {
+                width: 100%;
+            }
+
+            .suggestions {
+                padding: 1rem;
+                background-color: #f4f4f4;
+                border-radius: 10px;
+                margin-top: 1rem;
+            }
+            .suggestions a {
+                color: #525153;
+                text-decoration: none;
+            }
+
+            .suggestions a:hover {
+                color: #6b6572;
+            }
+
+            .suggestions h2 {
+                margin-bottom: 1rem;
+            }
+
+            .suggestions p {
+                font-weight: 600;
+                color: #525153;
+            }
+            .suggestions ul {
+                padding: 1rem;
+            }
+
+            .suggestions ul li {
+                padding: 0.5rem;
             }
 
             @media screen and (min-width: 600px) {
@@ -285,7 +340,7 @@
                 const categoryLabels = [];
                 const categoryValues = [];
 
-                let answer_type_count = 5;
+                let answer_type_count = 6;
                 data[0].categories.forEach((category) => {
                     let category_max_score =
                         category.category_question_count * answer_type_count;
@@ -357,7 +412,8 @@
                                 min: 0,
                                 max: 100,
                                 grid: {
-                                    color: "black"
+                                    color: "black",
+                                    display: false
                                 },
                                 ticks: {
                                     color: "black"
@@ -369,7 +425,7 @@
                                     display: window.innerWidth > 600
                                 },
                                 grid: {
-                                    display: true,
+                                    display: false,
                                     color: "black"
                                 }
                             }
@@ -388,6 +444,7 @@
                 data[0].categories.forEach((perData, key) => {
                     const factorLabels = [];
                     const factorValues = [];
+                    const unitNames = [];
 
                     perData.factors.forEach((factor) => {
                         let factor_max_score =
@@ -395,6 +452,13 @@
                         let factor_average_percent =
                             (factor.total_puan * 100) / factor_max_score;
 
+                        unitNames.push({
+                            factor: factor.factor,
+                            units: factor.items.map((item) => ({
+                                unit_name: item.unit_name,
+                                link: item.unit_link
+                            }))
+                        });
                         factorLabels.push(factor.factor);
                         factorValues.push(factor_average_percent);
                     });
@@ -442,6 +506,23 @@
                         return output;
                     };
 
+                    function splitTickLabel(value, limit) {
+                        console.log(value);
+                        let words = value.split(" ");
+                        let lines = [];
+                        let line = "";
+                        words.forEach((word) => {
+                            if (line.length + word.length <= limit) {
+                                line += (line.length > 0 ? " " : "") + word;
+                            } else {
+                                lines.push(line);
+                                line = word;
+                            }
+                        });
+                        lines.push(line);
+                        return lines;
+                    }
+
                     const factorChart = new Chart(factorCanvas, {
                         type: "bar",
                         data: {
@@ -481,6 +562,7 @@
                                     min: 0,
                                     max: 100,
                                     grid: {
+                                        display: false,
                                         color: "black"
                                     },
                                     ticks: {
@@ -490,10 +572,18 @@
                                 y: {
                                     ticks: {
                                         color: "black",
-                                        display: window.innerWidth > 600
+                                        display: window.innerWidth > 600,
+                                        callback: function (value) {
+                                            let lines = splitTickLabel(
+                                                this.getLabelForValue(value),
+                                                50
+                                            );
+
+                                            return lines;
+                                        }
                                     },
                                     grid: {
-                                        display: true,
+                                        display: false,
                                         color: "black"
                                     }
                                 }
@@ -506,12 +596,35 @@
                         }
                     });
 
+                    let canvasWrapper = document.createElement("div");
+                    canvasWrapper.appendChild(factorCanvas);
+                    canvasWrapper.className = "factor-chart";
                     accordionDiv.appendChild(input);
                     accordionDiv.appendChild(childDiv);
                     childDiv.appendChild(label);
-                    canvasContainer.appendChild(factorCanvas);
+                    canvasContainer.appendChild(canvasWrapper);
                     accordionDiv.appendChild(canvasContainer);
                     chartPage.appendChild(accordionDiv);
+
+                    let suggestionDiv = document.createElement("div");
+                    suggestionDiv.className = "suggestions";
+                    let h2 = document.createElement("h2");
+                    h2.innerText = "Suggestions";
+                    suggestionDiv.appendChild(h2);
+                    let p = document.createElement("p");
+                    p.innerText = "Click to below links to improve yourself:";
+                    suggestionDiv.appendChild(p);
+                    let ul = document.createElement("ul");
+                    unitNames.forEach((unit) => {
+                        let li = document.createElement("li");
+                        let a = document.createElement("a");
+                        a.href = unit.units[0].link;
+                        a.innerText = unit.units[0].unit_name;
+                        li.appendChild(a);
+                        ul.appendChild(li);
+                    });
+                    suggestionDiv.appendChild(ul);
+                    canvasContainer.appendChild(suggestionDiv);
                 });
             };
 
