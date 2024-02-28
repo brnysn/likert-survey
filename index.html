@@ -126,11 +126,11 @@
                                     Select country
                                 </option>
 
-                                <option value="Italy">Italy</option>
-                                <option value="Portugal">Portugal</option>
-                                <option value="Slovenia">Slovenia</option>
-                                <option value="Spain">Spain</option>
-                                <option value="Turkey">Turkey</option>
+                                <option value="it">Italy</option>
+                                <option value="pt">Portugal</option>
+                                <option value="sk">Slovenia</option>
+                                <option value="es">Spain</option>
+                                <option value="tr">Turkey</option>
                             </select>
                         </div>
                         <button id="startButton" disabled>Start</button>
@@ -214,6 +214,11 @@
 
             startButton.addEventListener("click", function (event) {
                 event.preventDefault();
+
+                window.localStorage.setItem(
+                    "survey-language",
+                    document.getElementById("country").value
+                );
 
                 survey_intro.style.display = "none";
                 survey_start.style.display = "block";

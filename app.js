@@ -43,7 +43,10 @@ const displayForm = async () => {
         });
     }
     data = combineQuestionsByCategory(data);
-    data = groupedData.find((item) => item.language === "en").categories;
+    data = groupedData.find(
+        (item) =>
+            item.language === window.localStorage.getItem("survey-language")
+    ).categories;
 
     const formContainer = document.querySelector(".likert-survey");
     let currentPage = 0;
