@@ -1,3 +1,37 @@
+let surveyLanguage = "en"; // Default language is "en"
+
+document
+    .getElementsByClassName("survey-intro")[0]
+    .addEventListener("change", function () {
+        var university = document.getElementById("university").value;
+        var specialisedField =
+            document.getElementById("specialisedField").value;
+        var email = document.getElementById("email").value;
+        var occupation = document.querySelector(
+            'input[name="occupation"]:checked'
+        );
+        var country = document.getElementById("country").value;
+
+        if (university && specialisedField && email && occupation && country) {
+            document.getElementById("startButton").disabled = false;
+        } else {
+            document.getElementById("startButton").disabled = true;
+        }
+    });
+
+let survey_intro = document.getElementsByClassName("survey-intro")[0];
+let survey_start = document.getElementsByClassName("survey-start")[0];
+let startButton = document.getElementById("startButton");
+
+startButton.addEventListener("click", function (event) {
+    event.preventDefault();
+
+    surveyLanguage = document.getElementById("country").value;
+
+    survey_intro.style.display = "none";
+    survey_start.style.display = "block";
+});
+
 const getData = async () => {
     try {
         let response = await fetch("./data.json");
@@ -44,8 +78,7 @@ const displayForm = async () => {
     }
     data = combineQuestionsByCategory(data);
     data = groupedData.find(
-        (item) =>
-            item.language === window.localStorage.getItem("survey-language")
+        (item) => item.language === surveyLanguage
     ).categories;
 
     const formContainer = document.querySelector(".likert-survey");
