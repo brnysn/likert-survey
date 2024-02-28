@@ -125,11 +125,12 @@
                                 <option value="" disabled selected>
                                     Select country
                                 </option>
-                                <option value="Slovenia">Slovenia</option>
-                                <option value="Turkey">Turkey</option>
-                                <option value="Spain">Spain</option>
+
                                 <option value="Italy">Italy</option>
                                 <option value="Portugal">Portugal</option>
+                                <option value="Slovenia">Slovenia</option>
+                                <option value="Spain">Spain</option>
+                                <option value="Turkey">Turkey</option>
                             </select>
                         </div>
                         <button id="startButton" disabled>Start</button>
@@ -191,13 +192,7 @@
                         'input[name="occupation"]:checked'
                     );
                     var country = document.getElementById("country").value;
-                    console.log(
-                        university,
-                        specialisedField,
-                        email,
-                        occupation,
-                        country
-                    );
+
                     if (
                         university &&
                         specialisedField &&
@@ -219,25 +214,6 @@
 
             startButton.addEventListener("click", function (event) {
                 event.preventDefault();
-
-                console.log(
-                    "University:",
-                    document.getElementById("university").value
-                );
-                console.log(
-                    "Specialised field:",
-                    document.getElementById("specialisedField").value
-                );
-                console.log("Email:", document.getElementById("email").value);
-                console.log(
-                    "Occupation:",
-                    document.querySelector('input[name="occupation"]:checked')
-                        .value
-                );
-                console.log(
-                    "Country:",
-                    document.getElementById("country").value
-                );
 
                 survey_intro.style.display = "none";
                 survey_start.style.display = "block";

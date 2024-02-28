@@ -75,7 +75,6 @@
                 margin-right: 10px;
             }
             input:checked ~ div.child ~ div.category-chart {
-                /* width: 65vw; */
                 max-height: 30vh;
                 border-radius: 10px;
             }
@@ -84,12 +83,6 @@
                 padding: 1rem;
             }
 
-            /* .canvas-container {
-                width: 100%;
-                height: 150px;
-                display: flex;
-                align-items: center;
-            } */
             .category-chart:not(:has(canvas)) {
                 padding: 1rem;
             }
@@ -103,14 +96,29 @@
                 background-color: white;
             }
 
-            .chartPage {
-                margin-bottom: 3rem;
-            }
-
             .chartPage div:has(h1) {
                 margin-inline: auto;
                 width: 80vw;
                 margin-block: 3rem;
+            }
+
+            button {
+                font-size: 18px;
+                float: right;
+                background-color: #7826db;
+                border: none;
+                color: white;
+                padding: 0.5rem 2rem;
+                border-radius: 10px;
+                cursor: pointer;
+            }
+
+            button:hover {
+                background-color: #9557e1;
+            }
+
+            .footer {
+                width: 93vw;
             }
 
             @media screen and (min-width: 600px) {
@@ -120,9 +128,8 @@
             }
 
             @media screen and (min-width: 892px) {
-                .accordion {
-                    width: 80vw;
-                }
+                .footer,
+                .accordion,
                 div.child,
                 .category-chart {
                     width: 80vw;
@@ -136,6 +143,12 @@
             <div>
                 <h1 class="likert-header">Results of the survey</h1>
             </div>
+        </div>
+        <div
+            class="footer"
+            style="padding-top: 3rem; padding-bottom: 5rem; margin-inline: auto"
+        >
+            <button class="print" onclick="window.print()">Print</button>
         </div>
 
         <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
