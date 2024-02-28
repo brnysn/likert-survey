@@ -1,0 +1,492 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Chart</title>
+        <style>
+            *,
+            *::after,
+            *::before {
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
+            }
+            html,
+            body {
+                height: 100%;
+                font-family: "Arial", sans-serif;
+                background-color: #f4f4f4;
+            }
+
+            div.accordion {
+                position: relative;
+                margin-block: 1em;
+                margin-inline: auto;
+                width: 93vw;
+            }
+            input {
+                position: absolute;
+                left: 0;
+                top: 0;
+                height: 100%;
+                width: 100%;
+                opacity: 0;
+                visibility: 0;
+            }
+            div.child {
+                background: white;
+                color: black;
+                padding: 1em;
+                position: relative;
+                border-radius: 10px;
+                display: block;
+                margin-inline: auto;
+            }
+            label::before {
+                content: "";
+                display: inline-block;
+                border: 10px solid transparent;
+                border-left: 10px solid rgb(131, 131, 131);
+            }
+            label {
+                cursor: pointer;
+                position: relative;
+                display: flex;
+                align-items: center;
+                color: gray;
+                font-weight: 600;
+            }
+
+            input ~ div.child ~ div.category-chart {
+                max-height: 0px;
+                overflow: hidden;
+                transition: max-height 0.5s;
+                background-color: white;
+                box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2);
+            }
+            div.p p {
+                padding: 1rem;
+            }
+            input:checked ~ div.child label::before {
+                border-left: 10px solid transparent;
+                border-top: 10px solid rgb(131, 131, 131);
+                margin-top: 12px;
+                margin-right: 10px;
+            }
+            input:checked ~ div.child ~ div.category-chart {
+                /* width: 65vw; */
+                max-height: 30vh;
+                border-radius: 10px;
+            }
+            .chartPage > div.category-chart,
+            input:checked ~ div.child ~ div.category-chart {
+                padding: 1rem;
+            }
+
+            /* .canvas-container {
+                width: 100%;
+                height: 150px;
+                display: flex;
+                align-items: center;
+            } */
+            .category-chart:not(:has(canvas)) {
+                padding: 1rem;
+            }
+
+            .category-chart {
+                position: relative;
+                margin: auto;
+                height: 50vh;
+                width: 93vw;
+                border-radius: 10px;
+                background-color: white;
+            }
+
+            .chartPage {
+                margin-bottom: 3rem;
+            }
+
+            .chartPage div:has(h1) {
+                margin-inline: auto;
+                width: 80vw;
+                margin-block: 3rem;
+            }
+
+            @media screen and (min-width: 600px) {
+                .label {
+                    width: 50%;
+                }
+            }
+
+            @media screen and (min-width: 892px) {
+                .accordion {
+                    width: 80vw;
+                }
+                div.child,
+                .category-chart {
+                    width: 80vw;
+                }
+            }
+        </style>
+    </head>
+
+    <body style="min-height: 100%">
+        <div class="chartPage">
+            <div>
+                <h1 class="likert-header">Results of the survey</h1>
+            </div>
+        </div>
+
+        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+        <script>
+            const getData = async () => {
+                try {
+                    let response = await fetch("./data.json");
+                    let data = await response.json();
+                    return data;
+                } catch (error) {
+                    return [];
+                }
+            };
+            let storedData = JSON.parse(
+                window.localStorage.getItem("survey-answer")
+            );
+
+            const displayForm = async () => {
+                let data = await getData();
+
+                let groupedData = [];
+                function combineQuestionsByCategory(data) {
+                    return data.forEach(function (item) {
+                        var foundLanguage = groupedData.find(function (group) {
+                            return group.language === item.language;
+                        });
+
+                        if (!foundLanguage) {
+                            foundLanguage = {
+                                language: item.language,
+                                categories: []
+                            };
+                            groupedData.push(foundLanguage);
+                        }
+
+                        var foundCategory = foundLanguage.categories.find(
+                            function (category) {
+                                return category.category === item.category;
+                            }
+                        );
+
+                        if (!foundCategory) {
+                            foundCategory = {
+                                category: item.category,
+                                factors: []
+                            };
+                            foundLanguage.categories.push(foundCategory);
+                        }
+
+                        var foundFactor = foundCategory.factors.find(function (
+                            factor
+                        ) {
+                            return factor.factor === item.factor;
+                        });
+
+                        if (!foundFactor) {
+                            foundFactor = {
+                                factor: item.factor,
+                                items: []
+                            };
+                            foundCategory.factors.push(foundFactor);
+                        }
+
+                        foundFactor.items.push(item);
+                    });
+                }
+                data = combineQuestionsByCategory(data);
+                data = groupedData;
+
+                function assignScoresToItems(groupedData, survey) {
+                    let index = 0;
+                    groupedData.forEach((languageGroup) => {
+                        languageGroup.categories.forEach((categoryGroup) => {
+                            categoryGroup.total_puan = 0;
+                            categoryGroup.category_question_count = 0;
+                            categoryGroup.factors.forEach((factorGroup) => {
+                                factorGroup.total_puan = 0;
+                                factorGroup.factor_question_count = 0;
+                                factorGroup.items.forEach((item) => {
+                                    if (index >= survey.length) return;
+
+                                    if (!item.hasOwnProperty("puan")) {
+                                        item.puan = survey[index];
+                                    }
+
+                                    factorGroup.total_puan += parseInt(
+                                        item.puan
+                                    );
+
+                                    categoryGroup.total_puan += parseInt(
+                                        item.puan
+                                    );
+                                    index++;
+                                });
+
+                                factorGroup.factor_question_count =
+                                    factorGroup.items.length;
+
+                                categoryGroup.category_question_count +=
+                                    factorGroup.items.length;
+                            });
+                        });
+                    });
+                }
+
+                assignScoresToItems(data, storedData);
+
+                const chartPage =
+                    document.getElementsByClassName("chartPage")[0];
+
+                const categoryChart = document.createElement("div");
+                categoryChart.className = "category-chart";
+                const categoryCanvas = document.createElement("canvas");
+                categoryCanvas.id = `categoryChart`;
+                categoryCanvas.style.width = "100%";
+                categoryCanvas.style.height = "100%";
+
+                const categoryLabels = [];
+                const categoryValues = [];
+
+                let answer_type_count = 5;
+                data[0].categories.forEach((category) => {
+                    let category_max_score =
+                        category.category_question_count * answer_type_count;
+                    let category_average_percent =
+                        (category.total_puan * 100) / category_max_score;
+                    categoryLabels.push(category.category);
+                    categoryValues.push(category_average_percent);
+                });
+
+                const backgroundColors = (total) => {
+                    let output = [],
+                        red = "#E63946",
+                        yellow = "#ffbe0b",
+                        green = "#80ed99";
+
+                    for (let i = 0; i < categoryValues.length; i++) {
+                        // if values is less than 40, red
+                        // if values is between 40 and 70, yellow
+                        // if values is greater than 70, green
+                        if (categoryValues[i] < 40) {
+                            output.push(red);
+                        } else if (
+                            categoryValues[i] >= 40 &&
+                            categoryValues[i] <= 70
+                        ) {
+                            output.push(yellow);
+                        } else {
+                            output.push(green);
+                        }
+                    }
+
+                    return output;
+                };
+
+                const category_chart = new Chart(categoryCanvas, {
+                    type: "bar",
+                    data: {
+                        labels: categoryLabels,
+                        datasets: [
+                            {
+                                data: categoryValues,
+                                backgroundColor:
+                                    backgroundColors(categoryValues),
+                                borderWidth: 2
+                            }
+                        ]
+                    },
+
+                    options: {
+                        indexAxis: "y",
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        elements: {
+                            bar: {
+                                borderWidth: 2
+                            }
+                        },
+                        plugins: {
+                            legend: {
+                                display: false
+                            },
+                            title: {
+                                display: true,
+                                text: "Percentage of answers by category"
+                            }
+                        },
+                        scales: {
+                            x: {
+                                min: 0,
+                                max: 100,
+                                grid: {
+                                    color: "black"
+                                },
+                                ticks: {
+                                    color: "black"
+                                }
+                            },
+                            y: {
+                                ticks: {
+                                    color: "black",
+                                    display: window.innerWidth > 600
+                                },
+                                grid: {
+                                    display: true,
+                                    color: "black"
+                                }
+                            }
+                        },
+                        interaction: {
+                            intersect: false,
+                            axis: "xy",
+                            mode: "nearest"
+                        }
+                    }
+                });
+
+                categoryChart.appendChild(categoryCanvas);
+                chartPage.appendChild(categoryChart);
+
+                data[0].categories.forEach((perData, key) => {
+                    const factorLabels = [];
+                    const factorValues = [];
+
+                    perData.factors.forEach((factor) => {
+                        let factor_max_score =
+                            factor.factor_question_count * answer_type_count;
+                        let factor_average_percent =
+                            (factor.total_puan * 100) / factor_max_score;
+
+                        factorLabels.push(factor.factor);
+                        factorValues.push(factor_average_percent);
+                    });
+
+                    const accordionDiv = document.createElement("div");
+                    accordionDiv.className = "accordion";
+                    const input = document.createElement("input");
+                    input.type = "checkbox";
+                    input.id = `faq-${key + 1}`;
+
+                    const childDiv = document.createElement("div");
+                    childDiv.className = "child";
+                    const label = document.createElement("label");
+                    label.htmlFor = `faq-${key + 1}`;
+                    label.innerText = perData.category;
+                    const canvasContainer = document.createElement("div");
+                    canvasContainer.className = "category-chart";
+                    const factorCanvas = document.createElement("canvas");
+                    factorCanvas.id = `factorChart`;
+                    factorCanvas.style.width = "100%";
+                    factorCanvas.style.height = "100%";
+
+                    const backgroundColors = (factorValues) => {
+                        let output = [],
+                            red = "#E63946",
+                            yellow = "#ffbe0b",
+                            green = "#80ed99";
+
+                        for (let i = 0; i < factorValues.length; i++) {
+                            // if values is less than 40, red
+                            // if values is between 40 and 70, yellow
+                            // if values is greater than 70, green
+                            if (factorValues[i] < 40) {
+                                output.push(red);
+                            } else if (
+                                factorValues[i] >= 40 &&
+                                factorValues[i] <= 70
+                            ) {
+                                output.push(yellow);
+                            } else {
+                                output.push(green);
+                            }
+                        }
+
+                        return output;
+                    };
+
+                    const factorChart = new Chart(factorCanvas, {
+                        type: "bar",
+                        data: {
+                            labels: factorLabels,
+                            responsive: true,
+                            maintainAspectRatio: false,
+                            datasets: [
+                                {
+                                    data: factorValues,
+                                    backgroundColor:
+                                        backgroundColors(factorValues),
+                                    borderWidth: 2
+                                }
+                            ]
+                        },
+
+                        options: {
+                            indexAxis: "y",
+                            responsive: true,
+                            maintainAspectRatio: false,
+                            elements: {
+                                bar: {
+                                    borderWidth: 2
+                                }
+                            },
+                            plugins: {
+                                legend: {
+                                    display: false
+                                },
+                                title: {
+                                    display: true,
+                                    text: "Percentage of answers by factor"
+                                }
+                            },
+                            scales: {
+                                x: {
+                                    min: 0,
+                                    max: 100,
+                                    grid: {
+                                        color: "black"
+                                    },
+                                    ticks: {
+                                        color: "black"
+                                    }
+                                },
+                                y: {
+                                    ticks: {
+                                        color: "black",
+                                        display: window.innerWidth > 600
+                                    },
+                                    grid: {
+                                        display: true,
+                                        color: "black"
+                                    }
+                                }
+                            },
+                            interaction: {
+                                intersect: false,
+                                axis: "xy",
+                                mode: "nearest"
+                            }
+                        }
+                    });
+
+                    accordionDiv.appendChild(input);
+                    accordionDiv.appendChild(childDiv);
+                    childDiv.appendChild(label);
+                    canvasContainer.appendChild(factorCanvas);
+                    accordionDiv.appendChild(canvasContainer);
+                    chartPage.appendChild(accordionDiv);
+                });
+            };
+
+            displayForm();
+        </script>
+    </body>
+</html>

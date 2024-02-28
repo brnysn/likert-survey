@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="stylesheet" href="index.css" />
+
+        <title>Document</title>
+    </head>
+    <body>
+        <div class="wrap">
+            <h1 style="margin-top: 3rem">This is a Likert Scale survey</h1>
+            <form action="">
+                <div
+                    class="survey-intro"
+                    style="display: flex; justify-content: center"
+                >
+                    <div
+                        class="survey-form-infos"
+                        style="
+                            background-color: rgb(255, 247, 234);
+                            padding: 2rem;
+                            border-radius: 10px;
+                        "
+                    >
+                        <div
+                            style="
+                                display: flex;
+                                flex-direction: column;
+                                margin-bottom: 2rem;
+                            "
+                        >
+                            <label
+                                for="university"
+                                style="margin-bottom: 0.5rem"
+                                >University:</label
+                            >
+                            <input
+                                type="text"
+                                id="university"
+                                name="university"
+                                placeholder="Enter your University"
+                                required
+                                style="border-radius: 10px; padding: 1rem"
+                            />
+                        </div>
+                        <div
+                            style="
+                                display: flex;
+                                flex-direction: column;
+                                margin-bottom: 2rem;
+                            "
+                        >
+                            <label
+                                for="specialisedField"
+                                style="margin-bottom: 0.5rem"
+                                >Specialised field:</label
+                            >
+                            <input
+                                type="text"
+                                id="specialisedField"
+                                name="specialisedField"
+                                placeholder="Enter your specialised field"
+                                required
+                                style="border-radius: 10px; padding: 1rem"
+                            />
+                        </div>
+                        <div
+                            style="
+                                display: flex;
+                                flex-direction: column;
+                                margin-bottom: 2rem;
+                            "
+                        >
+                            <label for="email" style="margin-bottom: 0.5rem"
+                                >Email:</label
+                            >
+                            <input
+                                type="email"
+                                id="email"
+                                name="email"
+                                placeholder="Enter your email"
+                                required
+                                style="border-radius: 10px; padding: 1rem"
+                            />
+                        </div>
+                        <div
+                            style="
+                                display: flex;
+                                flex-direction: column;
+                                margin-bottom: 2rem;
+                            "
+                        >
+                            <label style="margin-bottom: 0.5rem"
+                                >Occupation:</label
+                            >
+                            <div style="display: flex">
+                                <input
+                                    type="radio"
+                                    id="teacher"
+                                    name="occupation"
+                                    value="teacher"
+                                />
+                                <label for="teacher">Teacher</label>
+                                <div style="margin-right: 1rem"></div>
+                                <input
+                                    type="radio"
+                                    id="manager"
+                                    name="occupation"
+                                    value="manager"
+                                />
+                                <label for="manager">Manager</label>
+                            </div>
+                        </div>
+                        <div style="display: flex; flex-direction: column">
+                            <label for="country" style="margin-bottom: 0.5rem"
+                                >Country:</label
+                            >
+                            <select
+                                id="country"
+                                name="country"
+                                required
+                                style="border-radius: 10px; padding: 1rem"
+                            >
+                                <option value="" disabled selected>
+                                    Select country
+                                </option>
+                                <option value="Slovenia">Slovenia</option>
+                                <option value="Turkey">Turkey</option>
+                                <option value="Spain">Spain</option>
+                                <option value="Italy">Italy</option>
+                                <option value="Portugal">Portugal</option>
+                            </select>
+                        </div>
+                        <button id="startButton" disabled>Start</button>
+                    </div>
+                    <div
+                        class="d-none survey-description"
+                        style="
+                            width: 50%;
+                            flex-direction: column;
+                            align-items: center;
+                            justify-content: center;
+                            padding: 2rem;
+                            background-color: aquamarine;
+                            border-radius: 10px;
+                        "
+                    >
+                        <h3>Lorem, ipsum dolor.</h3>
+                        <p>
+                            Lorem ipsum dolor sit, amet consectetur adipisicing
+                            elit. Ratione neque numquam a culpa, voluptate
+                            officiis eveniet. Expedita fuga perspiciatis
+                            corrupti eveniet quia esse nesciunt qui incidunt
+                            dolor numquam dignissimos alias reprehenderit
+                            voluptatem ex quas debitis, repudiandae omnis ad
+                            aperiam autem.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="survey-start">
+                    <div class="survey-options d-grid-2">
+                        <div>
+                            <h2>Questions</h2>
+                        </div>
+                        <div class="d-grid-5 d-none d-md-flex">
+                            <div><h4>Very Satisfied</h4></div>
+                            <div><h4>Satisfied</h4></div>
+                            <div><h4>Neutral</h4></div>
+                            <div><h4>Unsatisfied</h4></div>
+                            <div><h4>Very Unsatisfied</h4></div>
+                        </div>
+                    </div>
+
+                    <div class="likert-survey"></div>
+                </div>
+            </form>
+        </div>
+        <script src="app.js"></script>
+        <script>
+            document
+                .getElementsByClassName("survey-intro")[0]
+                .addEventListener("change", function () {
+                    var university =
+                        document.getElementById("university").value;
+                    var specialisedField =
+                        document.getElementById("specialisedField").value;
+                    var email = document.getElementById("email").value;
+                    var occupation = document.querySelector(
+                        'input[name="occupation"]:checked'
+                    );
+                    var country = document.getElementById("country").value;
+                    console.log(
+                        university,
+                        specialisedField,
+                        email,
+                        occupation,
+                        country
+                    );
+                    if (
+                        university &&
+                        specialisedField &&
+                        email &&
+                        occupation &&
+                        country
+                    ) {
+                        document.getElementById("startButton").disabled = false;
+                    } else {
+                        document.getElementById("startButton").disabled = true;
+                    }
+                });
+
+            let survey_intro =
+                document.getElementsByClassName("survey-intro")[0];
+            let survey_start =
+                document.getElementsByClassName("survey-start")[0];
+            let startButton = document.getElementById("startButton");
+
+            startButton.addEventListener("click", function (event) {
+                event.preventDefault();
+
+                console.log(
+                    "University:",
+                    document.getElementById("university").value
+                );
+                console.log(
+                    "Specialised field:",
+                    document.getElementById("specialisedField").value
+                );
+                console.log("Email:", document.getElementById("email").value);
+                console.log(
+                    "Occupation:",
+                    document.querySelector('input[name="occupation"]:checked')
+                        .value
+                );
+                console.log(
+                    "Country:",
+                    document.getElementById("country").value
+                );
+
+                survey_intro.style.display = "none";
+                survey_start.style.display = "block";
+            });
+        </script>
+    </body>
+</html>
