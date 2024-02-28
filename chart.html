@@ -148,7 +148,13 @@
             class="footer"
             style="padding-top: 3rem; padding-bottom: 5rem; margin-inline: auto"
         >
-            <button class="print" onclick="printPage()">Print</button>
+            <button
+                class="print"
+                onclick="printPage()"
+                ontouchstart="printPage()"
+            >
+                Print
+            </button>
         </div>
 
         <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
