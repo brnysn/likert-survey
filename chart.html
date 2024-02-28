@@ -148,11 +148,21 @@
             class="footer"
             style="padding-top: 3rem; padding-bottom: 5rem; margin-inline: auto"
         >
-            <button class="print" onclick="window.print()">Print</button>
+            <button class="print" onclick="printPage()">Print</button>
         </div>
 
         <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
         <script>
+            function printPage() {
+                var isMobile = /iPhone|iPad|iPod|Android/i.test(
+                    navigator.userAgent
+                );
+                if (isMobile) {
+                    alert("Please use your device's print option.");
+                } else {
+                    window.print();
+                }
+            }
             const getData = async () => {
                 try {
                     let response = await fetch("./data.json");

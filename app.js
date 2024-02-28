@@ -7,12 +7,19 @@ document
         var specialisedField =
             document.getElementById("specialisedField").value;
         var email = document.getElementById("email").value;
+        var isValidEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
         var occupation = document.querySelector(
             'input[name="occupation"]:checked'
         );
         var country = document.getElementById("country").value;
 
-        if (university && specialisedField && email && occupation && country) {
+        if (
+            university &&
+            specialisedField &&
+            isValidEmail &&
+            occupation &&
+            country
+        ) {
             document.getElementById("startButton").disabled = false;
         } else {
             document.getElementById("startButton").disabled = true;
