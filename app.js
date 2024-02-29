@@ -37,6 +37,7 @@ startButton.addEventListener("click", function (event) {
 
     survey_intro.style.display = "none";
     survey_start.style.display = "block";
+    window.scrollTo({ top: 0, behavior: "smooth" });
 });
 
 const getData = async () => {
@@ -108,8 +109,8 @@ const displayForm = async () => {
             <label class="statement">${question.question}</label>
                 <div class="custom-radios d-grid-6">
                         <div>
-                        <input type="radio" id=${pageIndex}-${key}-0 class="color-1" name=mark-${pageIndex}-${key} value="0" />
-                        <label for=${pageIndex}-${key}-1 >
+                        <input type="radio" id=${pageIndex}-${key}-0 class="color-0" name=mark-${pageIndex}-${key} value="0" />
+                        <label for=${pageIndex}-${key}-0 >
                             <span><img src="check.svg" alt="Checked Icon" /></span>
                             <p>Not applicable</p>
                         </label>
