@@ -1,5 +1,5 @@
 let surveyLanguage = "en"; // Default language is "en"
-
+document.getElementById("error").style.display = "none";
 document
     .getElementsByClassName("survey-intro")[0]
     .addEventListener("change", function () {
@@ -12,6 +12,12 @@ document
             'input[name="occupation"]:checked'
         );
         var country = document.getElementById("country").value;
+
+        if (!isValidEmail) {
+            document.getElementById("error").style.display = "block";
+        } else {
+            document.getElementById("error").style.display = "none";
+        }
 
         if (
             university &&
