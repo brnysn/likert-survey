@@ -108,7 +108,7 @@ const displayForm = async () => {
             <label class="statement">${question.question}</label>
                 <div class="custom-radios d-grid-6">
                         <div>
-                        <input type="radio" id=${pageIndex}-${key}-1 class="color-1" name=mark-${pageIndex}-${key} value="0" />
+                        <input type="radio" id=${pageIndex}-${key}-0 class="color-1" name=mark-${pageIndex}-${key} value="0" />
                         <label for=${pageIndex}-${key}-1 >
                             <span><img src="check.svg" alt="Checked Icon" /></span>
                             <p>Not applicable</p>
