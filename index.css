@@ -123,6 +123,7 @@ h6 {
     align-items: center;
 }
 
+.custom-radios input[type="radio"]:checked + label,
 .custom-radios input[type="radio"] + label:hover {
     color: #000000;
     font-weight: 700;
@@ -186,6 +187,11 @@ form button {
     cursor: pointer;
 }
 
+.button-wrapper {
+    display: flex;
+    justify-content: flex-end;
+}
+
 form button:hover {
     background-color: #9557e1;
 }
@@ -198,20 +204,25 @@ form button:disabled:hover {
     background-color: #cac9cd;
 }
 
-.survey-form-infos {
-    width: 100%;
-    border-top-right-radius: 0 !important;
-    border-bottom-right-radius: 0 !important;
-}
-
 .survey-description {
     display: flex;
-    border-top-left-radius: 0 !important;
-    border-bottom-left-radius: 0 !important;
+    border-top-right-radius: 10px;
+    border-top-left-radius: 10px;
+}
+
+.survey-form-infos {
+    border-bottom-right-radius: 10px;
+    border-bottom-left-radius: 10px;
 }
 
 .survey-start {
     display: none;
+}
+
+.survey-intro {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
 }
 
 @media (max-width: 768px) {
@@ -225,6 +236,18 @@ form button:disabled:hover {
 @media (min-width: 768px) {
     .d-md-none {
         display: none;
+    }
+
+    .survey-form-infos {
+        border-radius: 0px;
+        border-top-left-radius: 10px;
+        border-bottom-left-radius: 10px;
+    }
+
+    .survey-description {
+        border-radius: 0px;
+        border-bottom-right-radius: 10px;
+        border-top-right-radius: 10px;
     }
 
     .custom-radios {
@@ -251,8 +274,17 @@ form button:disabled:hover {
         align-items: center;
     }
 
+    .survey-description,
     .survey-form-infos {
         width: 50%;
+    }
+
+    .survey-description {
+        order: 2;
+    }
+
+    .survey-intro {
+        flex-direction: row;
     }
 }
 

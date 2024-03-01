@@ -4,8 +4,7 @@ document
     .getElementsByClassName("survey-intro")[0]
     .addEventListener("change", function () {
         var university = document.getElementById("university").value;
-        var specialisedField =
-            document.getElementById("specialisedField").value;
+        var field = document.getElementById("field").value;
         var email = document.getElementById("email").value;
         var isValidEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
         var occupation = document.querySelector(
@@ -19,13 +18,7 @@ document
             document.getElementById("error").style.display = "none";
         }
 
-        if (
-            university &&
-            specialisedField &&
-            isValidEmail &&
-            occupation &&
-            country
-        ) {
+        if (university && field && isValidEmail && occupation && country) {
             document.getElementById("startButton").disabled = false;
         } else {
             document.getElementById("startButton").disabled = true;

@@ -5,181 +5,187 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <link rel="stylesheet" href="index.css" />
 
-        <title>Document</title>
+        <title>Hei teachers</title>
     </head>
     <body>
         <div class="wrap">
-            <h1 style="margin-top: 3rem">This is a Likert Scale survey</h1>
+            <h1 style="margin-top: 3rem">Self-evaluation for HEI teachers</h1>
             <form action="">
-                <div
-                    class="survey-intro"
-                    style="display: flex; justify-content: center"
-                >
+                <div class="survey-intro">
                     <div
-                        class="survey-form-infos"
+                        class="survey-description"
                         style="
-                            background-color: rgb(255, 247, 234);
-                            padding: 2rem;
-                            border-radius: 10px;
-                        "
-                    >
-                        <div
-                            style="
-                                display: flex;
-                                flex-direction: column;
-                                margin-bottom: 2rem;
-                            "
-                        >
-                            <label
-                                for="university"
-                                style="margin-bottom: 0.5rem"
-                                >University</label
-                            >
-                            <input
-                                type="text"
-                                id="university"
-                                name="university"
-                                placeholder="Enter your University"
-                                required
-                                style="
-                                    border-radius: 10px;
-                                    padding: 1rem;
-                                    border: 1px solid black;
-                                "
-                            />
-                        </div>
-                        <div
-                            style="
-                                display: flex;
-                                flex-direction: column;
-                                margin-bottom: 2rem;
-                            "
-                        >
-                            <label
-                                for="specialisedField"
-                                style="margin-bottom: 0.5rem"
-                                >Specialised</label
-                            >
-                            <input
-                                type="text"
-                                id="specialisedField"
-                                name="specialisedField"
-                                placeholder="Enter your specialised field"
-                                required
-                                style="
-                                    border-radius: 10px;
-                                    padding: 1rem;
-                                    border: 1px solid black;
-                                "
-                            />
-                        </div>
-                        <div
-                            style="
-                                display: flex;
-                                flex-direction: column;
-                                margin-bottom: 2rem;
-                            "
-                        >
-                            <label for="email" style="margin-bottom: 0.5rem"
-                                >Email</label
-                            >
-                            <input
-                                type="email"
-                                id="email"
-                                name="email"
-                                placeholder="Enter your email"
-                                required
-                                style="
-                                    border-radius: 10px;
-                                    padding: 1rem;
-                                    border: 1px solid black;
-                                "
-                            />
-                            <span id="error" style="color: rgb(209, 40, 40)"
-                                >Please enter valid email.</span
-                            >
-                        </div>
-                        <div
-                            style="
-                                display: flex;
-                                flex-direction: column;
-                                margin-bottom: 2rem;
-                            "
-                        >
-                            <label style="margin-bottom: 0.5rem"
-                                >Occupation</label
-                            >
-                            <div style="display: flex">
-                                <div>
-                                    <input
-                                        type="radio"
-                                        id="teacher"
-                                        name="occupation"
-                                        value="teacher"
-                                    />
-                                    <label for="teacher">Teacher</label>
-                                </div>
-                                <div style="margin-right: 1rem"></div>
-                                <div>
-                                    <input
-                                        type="radio"
-                                        id="manager"
-                                        name="occupation"
-                                        value="manager"
-                                    />
-                                    <label for="manager">Manager</label>
-                                </div>
-                            </div>
-                        </div>
-                        <div style="display: flex; flex-direction: column">
-                            <label for="country" style="margin-bottom: 0.5rem"
-                                >Country</label
-                            >
-                            <select
-                                id="country"
-                                name="country"
-                                required
-                                style="
-                                    border-radius: 10px;
-                                    text-indent: 12px;
-                                    height: 60px;
-                                "
-                            >
-                                <option value="" disabled selected>
-                                    Select country
-                                </option>
-
-                                <option value="it">Italy</option>
-                                <option value="pt">Portugal</option>
-                                <option value="sk">Slovenia</option>
-                                <option value="es">Spain</option>
-                                <option value="tr">Turkey</option>
-                            </select>
-                        </div>
-                        <button id="startButton" disabled>Start</button>
-                    </div>
-                    <div
-                        class="d-none survey-description"
-                        style="
-                            width: 50%;
                             flex-direction: column;
                             align-items: center;
                             justify-content: center;
                             padding: 2rem;
                             background-color: aquamarine;
-                            border-radius: 10px;
                         "
                     >
-                        <h3>Lorem, ipsum dolor.</h3>
-                        <p>
-                            Lorem ipsum dolor sit, amet consectetur adipisicing
-                            elit. Ratione neque numquam a culpa, voluptate
-                            officiis eveniet. Expedita fuga perspiciatis
-                            corrupti eveniet quia esse nesciunt qui incidunt
-                            dolor numquam dignissimos alias reprehenderit
-                            voluptatem ex quas debitis, repudiandae omnis ad
-                            aperiam autem.
-                        </p>
+                        <div style="margin-block: 2rem">
+                            <img src="/eu-logo.png" alt="" />
+                        </div>
+                        <div>
+                            <h3>Self-evaluation for HEI teachers</h3>
+                            <p>
+                                Lorem ipsum dolor sit, amet consectetur
+                                adipisicing elit. Ratione neque numquam a culpa,
+                                voluptate officiis eveniet. Expedita fuga
+                                perspiciatis corrupti eveniet quia esse nesciunt
+                                qui incidunt dolor numquam dignissimos alias
+                                reprehenderit voluptatem ex quas debitis,
+                                repudiandae omnis ad aperiam autem.
+                            </p>
+                        </div>
+                    </div>
+                    <div
+                        class="survey-form-infos"
+                        style="
+                            background-color: rgb(255, 247, 234);
+                            padding: 2rem;
+                        "
+                    >
+                        <div>
+                            <div style="margin-block: 2rem">
+                                <img src="/form-logo.png" alt="" />
+                            </div>
+                            <div
+                                style="
+                                    display: flex;
+                                    flex-direction: column;
+                                    margin-bottom: 2rem;
+                                "
+                            >
+                                <label
+                                    for="university"
+                                    style="margin-bottom: 0.5rem"
+                                    >University</label
+                                >
+                                <input
+                                    type="text"
+                                    id="university"
+                                    name="university"
+                                    placeholder="Enter your University"
+                                    required
+                                    style="
+                                        border-radius: 10px;
+                                        padding: 1rem;
+                                        border: 1px solid black;
+                                    "
+                                />
+                            </div>
+                            <div
+                                style="
+                                    display: flex;
+                                    flex-direction: column;
+                                    margin-bottom: 2rem;
+                                "
+                            >
+                                <label for="field" style="margin-bottom: 0.5rem"
+                                    >Field</label
+                                >
+                                <input
+                                    type="text"
+                                    id="field"
+                                    name="field"
+                                    placeholder="Enter your field"
+                                    required
+                                    style="
+                                        border-radius: 10px;
+                                        padding: 1rem;
+                                        border: 1px solid black;
+                                    "
+                                />
+                            </div>
+                            <div
+                                style="
+                                    display: flex;
+                                    flex-direction: column;
+                                    margin-bottom: 2rem;
+                                "
+                            >
+                                <label for="email" style="margin-bottom: 0.5rem"
+                                    >Email</label
+                                >
+                                <input
+                                    type="email"
+                                    id="email"
+                                    name="email"
+                                    placeholder="Enter your email"
+                                    required
+                                    style="
+                                        border-radius: 10px;
+                                        padding: 1rem;
+                                        border: 1px solid black;
+                                    "
+                                />
+                                <span id="error" style="color: rgb(209, 40, 40)"
+                                    >Please enter valid email.</span
+                                >
+                            </div>
+                            <div
+                                style="
+                                    display: flex;
+                                    flex-direction: column;
+                                    margin-bottom: 2rem;
+                                "
+                            >
+                                <label style="margin-bottom: 0.5rem"
+                                    >Occupation</label
+                                >
+                                <div style="display: flex">
+                                    <div>
+                                        <input
+                                            type="radio"
+                                            id="teacher"
+                                            name="occupation"
+                                            value="teacher"
+                                        />
+                                        <label for="teacher">Teacher</label>
+                                    </div>
+                                    <div style="margin-right: 1rem"></div>
+                                    <div>
+                                        <input
+                                            type="radio"
+                                            id="manager"
+                                            name="occupation"
+                                            value="manager"
+                                        />
+                                        <label for="manager">Manager</label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div style="display: flex; flex-direction: column">
+                                <label
+                                    for="country"
+                                    style="margin-bottom: 0.5rem"
+                                    >Country</label
+                                >
+                                <select
+                                    id="country"
+                                    name="country"
+                                    required
+                                    style="
+                                        border-radius: 10px;
+                                        text-indent: 12px;
+                                        height: 60px;
+                                    "
+                                >
+                                    <option value="" disabled selected>
+                                        Select country
+                                    </option>
+
+                                    <option value="it">Italy</option>
+                                    <option value="pt">Portugal</option>
+                                    <option value="sk">Slovenia</option>
+                                    <option value="es">Spain</option>
+                                    <option value="tr">Turkey</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="button-wrapper">
+                            <button id="startButton" disabled>Start</button>
+                        </div>
                     </div>
                 </div>
 
