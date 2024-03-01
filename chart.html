@@ -17,7 +17,94 @@
             body {
                 height: 100%;
                 font-family: "Arial", sans-serif;
-                background-color: #f4f4f4;
+                background-color: #fff;
+            }
+
+            .print-button-container {
+                position: fixed;
+                top: 40px;
+                right: 40px;
+            }
+
+            .page-footer {
+                height: 110px;
+            }
+
+            .page-footer {
+                display: none;
+                position: fixed;
+                bottom: 0;
+                width: 100%;
+                background-color: #fff;
+            }
+
+            .page-footer hr {
+                border-top: 1px solid darkred;
+            }
+
+            .page-footer img {
+                height: 60px;
+            }
+
+            .page {
+                page-break-after: always;
+            }
+
+            ul.no-icon {
+                list-style: none;
+            }
+
+            div.warning {
+                background-color: coral !important;
+                print-color-adjust: exact;
+                color: white;
+                padding: 10px;
+                display: flex;
+            }
+
+            div.warning::before {
+                content: "!";
+                font-size: 35px;
+                font-weight: 700;
+                display: block;
+                margin-right: 10px;
+            }
+
+            /*@page {*/
+            /*    margin: 20mm*/
+            /*}*/
+
+            @media print {
+                body {
+                    margin: 0;
+                }
+
+                .page {
+                    display: table;
+                }
+
+                .page-footer {
+                    display: table-footer-group;
+                }
+
+                .break-300 {
+                    margin-top: 300px;
+                }
+
+                .print-button-container {
+                    display: none;
+                }
+
+                .chartjs {
+                    max-width: 100% !important;
+                }
+
+                div.warning {
+                    background-color: coral !important;
+                    print-color-adjust: exact;
+                    -webkit-print-color-adjust: exact;
+                    -moz-print-color-adjust: exact;
+                }
             }
 
             div.accordion {
@@ -201,14 +288,35 @@
         </div>
         <div
             class="footer"
-            style="padding-top: 3rem; padding-bottom: 5rem; margin-inline: auto"
-        >
+            style="padding-top: 2rem; padding-bottom: 2rem; margin-inline: auto"
+        ></div>
+
+        <div class="page-footer"></div>
+        <div class="print-button-container">
             <button
-                class="print"
+                type="button"
+                class="btn btn-icon btn-outline-primary"
                 onclick="printPage()"
                 ontouchstart="printPage()"
             >
-                Print
+                <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="24"
+                    height="24"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    class="feather feather-printer"
+                >
+                    <polyline points="6 9 6 2 18 2 18 9"></polyline>
+                    <path
+                        d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"
+                    ></path>
+                    <rect x="6" y="14" width="12" height="8"></rect>
+                </svg>
             </button>
         </div>
 
@@ -628,6 +736,25 @@
                     suggestionDiv.appendChild(ul);
                     canvasContainer.appendChild(suggestionDiv);
                 });
+
+                const pageFooter = document.querySelector(".page-footer");
+
+                const footerContent = document.createElement("div");
+                footerContent.classList.add(
+                    "d-flex",
+                    "justify-content-between",
+                    "align-items-center",
+                    "mx-4"
+                );
+
+                const leftContent = document.createElement("div");
+
+                const heiTeachersLogo = document.createElement("img");
+                heiTeachersLogo.src = "/form-logo.png";
+                heiTeachersLogo.alt = "Hei Teachers";
+                leftContent.appendChild(heiTeachersLogo);
+                footerContent.appendChild(leftContent);
+                pageFooter.appendChild(footerContent);
             };
 
             displayForm();
