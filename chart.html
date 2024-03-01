@@ -17,13 +17,14 @@
             body {
                 height: 100%;
                 font-family: "Arial", sans-serif;
-                background-color: #fff;
+                background-color: #f4f4f4;
             }
 
             .print-button-container {
                 position: fixed;
                 top: 40px;
                 right: 40px;
+                z-index: 2;
             }
 
             .page-footer {
@@ -36,6 +37,7 @@
                 bottom: 0;
                 width: 100%;
                 background-color: #fff;
+                z-index: 2;
             }
 
             .page-footer hr {
@@ -46,8 +48,9 @@
                 height: 60px;
             }
 
-            .page {
+            .chartPage {
                 page-break-after: always;
+                padding-bottom: 5rem;
             }
 
             ul.no-icon {
@@ -79,7 +82,7 @@
                     margin: 0;
                 }
 
-                .page {
+                .chartPage {
                     display: table;
                 }
 
@@ -285,39 +288,34 @@
             <div>
                 <h1 class="likert-header">Results of the survey</h1>
             </div>
-        </div>
-        <div
-            class="footer"
-            style="padding-top: 2rem; padding-bottom: 2rem; margin-inline: auto"
-        ></div>
-
-        <div class="page-footer"></div>
-        <div class="print-button-container">
-            <button
-                type="button"
-                class="btn btn-icon btn-outline-primary"
-                onclick="printPage()"
-                ontouchstart="printPage()"
-            >
-                <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="24"
-                    height="24"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    stroke-width="2"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    class="feather feather-printer"
+            <div class="print-button-container">
+                <button
+                    type="button"
+                    class="btn btn-icon btn-outline-primary"
+                    onclick="printPage()"
+                    ontouchstart="printPage()"
                 >
-                    <polyline points="6 9 6 2 18 2 18 9"></polyline>
-                    <path
-                        d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"
-                    ></path>
-                    <rect x="6" y="14" width="12" height="8"></rect>
-                </svg>
-            </button>
+                    <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="24"
+                        height="24"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="2"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        class="feather feather-printer"
+                    >
+                        <polyline points="6 9 6 2 18 2 18 9"></polyline>
+                        <path
+                            d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"
+                        ></path>
+                        <rect x="6" y="14" width="12" height="8"></rect>
+                    </svg>
+                </button>
+            </div>
+            <div class="page-footer"></div>
         </div>
 
         <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
@@ -548,6 +546,22 @@
 
                 categoryChart.appendChild(categoryCanvas);
                 chartPage.appendChild(categoryChart);
+                const pageFooter = document.querySelector(".page-footer");
+
+                const footerContent = document.createElement("div");
+                footerContent.style.display = "flex";
+                footerContent.style.justifyContent = "flex-end";
+                footerContent.style.alignItems = "center";
+                footerContent.style.margin = "0rem";
+
+                const leftContent = document.createElement("div");
+
+                const heiTeachersLogo = document.createElement("img");
+                heiTeachersLogo.src = "/form-logo.png";
+                heiTeachersLogo.alt = "Hei Teachers";
+                leftContent.appendChild(heiTeachersLogo);
+                footerContent.appendChild(leftContent);
+                pageFooter.appendChild(footerContent);
 
                 data[0].categories.forEach((perData, key) => {
                     const factorLabels = [];
@@ -736,25 +750,6 @@
                     suggestionDiv.appendChild(ul);
                     canvasContainer.appendChild(suggestionDiv);
                 });
-
-                const pageFooter = document.querySelector(".page-footer");
-
-                const footerContent = document.createElement("div");
-                footerContent.classList.add(
-                    "d-flex",
-                    "justify-content-between",
-                    "align-items-center",
-                    "mx-4"
-                );
-
-                const leftContent = document.createElement("div");
-
-                const heiTeachersLogo = document.createElement("img");
-                heiTeachersLogo.src = "/form-logo.png";
-                heiTeachersLogo.alt = "Hei Teachers";
-                leftContent.appendChild(heiTeachersLogo);
-                footerContent.appendChild(leftContent);
-                pageFooter.appendChild(footerContent);
             };
 
             displayForm();
