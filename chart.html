@@ -27,11 +27,35 @@
                 z-index: 2;
             }
 
-            .page-footer {
-                height: 110px;
+            .page-header {
+                display: none;
+                height: 70px;
+                position: fixed;
+                top: 0;
+                width: 100%;
+                background-color: #fff;
+                z-index: 2;
+                justify-content: space-between;
+                align-items: center;
+            }
+
+            .page-header hr {
+                border-top: 1px solid darkred;
+            }
+
+            .page-header img {
+                height: 60px;
+            }
+
+            @media print {
+                .page-header {
+                    margin-bottom: -30px;
+                    display: flex;
+                }
             }
 
             .page-footer {
+                height: 110px;
                 display: none;
                 position: fixed;
                 bottom: 0;
@@ -51,6 +75,12 @@
             .chartPage {
                 page-break-after: always;
                 padding-bottom: 5rem;
+            }
+
+            @media print {
+                .chartPage {
+                    padding-top: 5rem;
+                }
             }
 
             ul.no-icon {
@@ -284,6 +314,10 @@
     </head>
 
     <body style="min-height: 100%">
+        <div class="page-header">
+            <img src="/logo.png" alt="Hei Teachers">
+            <img src="/eu-logo.png" alt="Hei Teachers">
+        </div>
         <div class="chartPage">
             <div>
                 <h1 class="likert-header">Results of the survey</h1>
@@ -327,6 +361,12 @@
                 if (isMobile) {
                     alert("Please use your device's print option.");
                 } else {
+                    // find checkboxes inside div with accordion class. check them all
+                    document
+                        .querySelectorAll(".accordion input[type='checkbox']")
+                        .forEach((input) => {
+                            input.checked = true;
+                        });
                     window.print();
                 }
             }
@@ -546,22 +586,42 @@
 
                 categoryChart.appendChild(categoryCanvas);
                 chartPage.appendChild(categoryChart);
-                const pageFooter = document.querySelector(".page-footer");
 
+                const pageFooter = document.querySelector(".page-footer");
                 const footerContent = document.createElement("div");
                 footerContent.style.display = "flex";
-                footerContent.style.justifyContent = "flex-end";
+                footerContent.style.justifyContent = "center";
                 footerContent.style.alignItems = "center";
                 footerContent.style.margin = "0rem";
-
                 const leftContent = document.createElement("div");
-
-                const heiTeachersLogo = document.createElement("img");
-                heiTeachersLogo.src = "/form-logo.png";
-                heiTeachersLogo.alt = "Hei Teachers";
-                leftContent.appendChild(heiTeachersLogo);
+                const footer = document.createElement("img");
+                footer.src = "/footer.png";
+                footer.alt = "Hei Teachers";
+                leftContent.appendChild(footer);
                 footerContent.appendChild(leftContent);
                 pageFooter.appendChild(footerContent);
+
+                // const pageHeader = document.querySelector(".page-header");
+                // const headerContent = document.createElement("div");
+                // headerContent.style.display = "flex";
+                // headerContent.style.justifyContent = "space-between";
+                // headerContent.style.alignItems = "center";
+                // headerContent.style.margin = "0rem";
+                
+                // const headerLeft = document.createElement("div");
+                // const heiTeachersLogo = document.createElement("img");
+                // heiTeachersLogo.src = "/logo.png";
+                // heiTeachersLogo.alt = "Hei Teachers";
+                // headerLeft.appendChild(heiTeachersLogo);
+                // headerContent.appendChild(headerLeft);
+
+                // const headerRight = document.createElement("div");
+                // const euLogo = document.createElement("img");
+                // euLogo.src = "/eu-logo.png";
+                // euLogo.alt = "EU";
+                // headerRight.appendChild(euLogo);
+                // headerContent.appendChild(headerRight);
+                // pageHeader.appendChild(headerContent);
 
                 data[0].categories.forEach((perData, key) => {
                     const factorLabels = [];
@@ -590,14 +650,19 @@
                     const input = document.createElement("input");
                     input.type = "checkbox";
                     input.id = `faq-${key + 1}`;
+                    accordionDiv.appendChild(input);
 
                     const childDiv = document.createElement("div");
                     childDiv.className = "child";
+                    accordionDiv.appendChild(childDiv);
+
                     const label = document.createElement("label");
                     label.htmlFor = `faq-${key + 1}`;
                     label.innerText = perData.category;
+
                     const canvasContainer = document.createElement("div");
                     canvasContainer.className = "category-chart";
+                    
                     const factorCanvas = document.createElement("canvas");
                     factorCanvas.id = `factorChart`;
                     factorCanvas.style.width = "100%";
@@ -629,7 +694,6 @@
                     };
 
                     function splitTickLabel(value, limit) {
-                        console.log(value);
                         let words = value.split(" ");
                         let lines = [];
                         let line = "";
@@ -722,8 +786,6 @@
                     let canvasWrapper = document.createElement("div");
                     canvasWrapper.appendChild(factorCanvas);
                     canvasWrapper.className = "factor-chart";
-                    accordionDiv.appendChild(input);
-                    accordionDiv.appendChild(childDiv);
                     childDiv.appendChild(label);
                     canvasContainer.appendChild(canvasWrapper);
                     accordionDiv.appendChild(canvasContainer);
