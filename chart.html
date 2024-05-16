@@ -147,15 +147,27 @@
             padding: 1rem;
         }
 
+        .chart-container {
+            position: relative;
+            margin: auto;
+            border-radius: 10px;
+            background-color: white;
+        }
+
         .category-chart:not(:has(canvas)) {
             padding: 1rem;
         }
 
         .category-chart {
-            position: relative;
             margin: auto;
-            border-radius: 10px;
-            background-color: white;
+        }
+        
+        .general-chart, .factor-chart {
+            width: 70%;
+        }
+
+        .factor-chart {
+            margin: auto;
         }
 
         input:checked~div.child label::before {
@@ -279,6 +291,10 @@
 
             label {
                 margin-top: 100px !important;
+            }
+
+            .factor-chart {
+                margin: unset !important;
             }
         }
     </style>
@@ -434,6 +450,9 @@
 
             const chartPage = document.getElementsByClassName("chartPage")[0];
 
+            const chartContainer = document.createElement("div");
+            chartContainer.className = "chart-container";
+            
             const categoryChart = document.createElement("div");
             categoryChart.className = "category-chart general-chart";
             categoryChart.style.height = "400px";
@@ -540,7 +559,8 @@
             });
 
             categoryChart.appendChild(categoryCanvas);
-            chartPage.appendChild(categoryChart);
+            chartContainer.appendChild(categoryChart);
+            chartPage.appendChild(chartContainer);
 
             const pageFooter = document.querySelector(".page-footer");
             const footerContent = document.createElement("div");
