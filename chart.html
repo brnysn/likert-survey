@@ -1,508 +1,644 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Chart</title>
-        <style>
-            *,
-            *::after,
-            *::before {
-                margin: 0;
-                padding: 0;
-                box-sizing: border-box;
-            }
 
-            html,
-            body {
-                height: 100%;
-                font-family: "Arial", sans-serif;
-                background-color: #f4f4f4;
-            }
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Chart</title>
+    <style>
+        *,
+        *::after,
+        *::before {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-            @media print {
-                @page {
-                    size: A4; /* DIN A4 standard, Europe */
-                    padding: 0 0 20mm 0 !important;
-                }
-            }
+        html,
+        body {
+            height: 100%;
+            font-family: "Arial", sans-serif;
+            background-color: #f4f4f4;
+        }
 
-            .print-button-container {
-                position: fixed;
-                top: 40px;
-                right: 40px;
-                z-index: 2;
+        @media print {
+            @page {
+                size: A4;
+                /* DIN A4 standard, Europe */
+                padding: 0 0 20mm 0 !important;
             }
+        }
 
+        .print-button-container {
+            position: fixed;
+            top: 40px;
+            right: 40px;
+            z-index: 2;
+        }
+
+        .page-header {
+            display: none;
+            height: 70px;
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background-color: #fff;
+            z-index: 2;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .page-header hr {
+            border-top: 1px solid darkred;
+        }
+
+        .page-header img {
+            height: 60px;
+        }
+
+        @media print {
             .page-header {
-                display: none;
-                height: 70px;
-                position: fixed;
-                top: 0;
-                width: 100%;
-                background-color: #fff;
-                z-index: 2;
-                justify-content: space-between;
-                align-items: center;
+                margin-bottom: -30px;
+                display: flex;
             }
+        }
 
-            .page-header hr {
-                border-top: 1px solid darkred;
+        .page-footer {
+            height: 110px;
+            display: none;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            background-color: #fff;
+            z-index: 2;
+        }
+
+        .page-footer hr {
+            border-top: 1px solid darkred;
+        }
+
+        .page-footer img {
+            height: 60px;
+        }
+
+        .chartPage {
+            page-break-after: always;
+            padding-bottom: 5rem;
+        }
+
+        @media print {
+            .chartPage {
+                padding-top: 5rem;
             }
+        }
 
-            .page-header img {
-                height: 60px;
-            }
+        ul.no-icon {
+            list-style: none;
+        }
 
-            @media print {
-                .page-header {
-                    margin-bottom: -30px;
-                    display: flex;
-                }
-            }
+        div.warning {
+            background-color: coral !important;
+            print-color-adjust: exact;
+            color: white;
+            padding: 10px;
+            display: flex;
+        }
 
-            .page-footer {
-                height: 110px;
-                display: none;
-                position: fixed;
-                bottom: 0;
-                width: 100%;
-                background-color: #fff;
-                z-index: 2;
-            }
+        div.warning::before {
+            content: "!";
+            font-size: 35px;
+            font-weight: 700;
+            display: block;
+            margin-right: 10px;
+        }
 
-            .page-footer hr {
-                border-top: 1px solid darkred;
-            }
+        /*@page {*/
+        /*    margin: 20mm*/
+        /*}*/
 
-            .page-footer img {
-                height: 60px;
+        @media print {
+            body {
+                margin: 0;
             }
 
             .chartPage {
-                page-break-after: always;
-                padding-bottom: 5rem;
+                display: table;
             }
 
-            @media print {
-                .chartPage {
-                    padding-top: 5rem;
-                }
+            .page-footer {
+                display: table-footer-group;
             }
 
-            ul.no-icon {
-                list-style: none;
+            /* .break-300 {
+                    margin-top: 300px;
+                } */
+
+            .print-button-container {
+                display: none;
             }
+
+            /* .chartjs {
+                    max-width: 80% !important;
+                } */
 
             div.warning {
                 background-color: coral !important;
                 print-color-adjust: exact;
-                color: white;
-                padding: 10px;
-                display: flex;
+                -webkit-print-color-adjust: exact;
+                -moz-print-color-adjust: exact;
             }
+        }
 
-            div.warning::before {
-                content: "!";
-                font-size: 35px;
-                font-weight: 700;
-                display: block;
-                margin-right: 10px;
-            }
+        div.accordion {
+            position: relative;
+            margin-block: 1em;
+            margin-inline: auto;
+        }
 
-            /*@page {*/
-            /*    margin: 20mm*/
-            /*}*/
+        input {
+            position: absolute;
+            left: 0;
+            top: 0;
+            opacity: 0;
+            visibility: 0;
+        }
 
-            @media print {
-                body {
-                    margin: 0;
-                }
+        div.child {
+            position: relative;
+            background: white;
+            color: black;
+            padding: 1em;
+            border-radius: 10px;
+        }
 
-                .chartPage {
-                    display: table;
-                }
+        input:checked~div.child {
+            border-bottom-left-radius: 0px;
+            border-bottom-right-radius: 0px;
+        }
 
-                .page-footer {
-                    display: table-footer-group;
-                }
+        label::before {
+            display: inline-block;
+            content: "";
+            border: 10px solid transparent;
+            border-left: 10px solid black;
+        }
 
-                /* .break-300 {
-                    margin-top: 300px;
+        label {
+            display: flex;
+            cursor: pointer;
+            position: relative;
+            align-items: center;
+            font-weight: 600;
+        }
+
+        input~div.child~div.category-chart {
+            max-height: 0px;
+            overflow: hidden;
+            background-color: white;
+        }
+
+        .chartPage>div.category-chart,
+        input:checked~div.child~div.category-chart {
+            padding: 1rem;
+        }
+
+        .category-chart:not(:has(canvas)) {
+            padding: 1rem;
+        }
+
+        .category-chart {
+            position: relative;
+            margin: auto;
+            border-radius: 10px;
+            background-color: white;
+        }
+
+        @media print {
+            /* .category-chart {
+                    width: 80%;
                 } */
 
-                .print-button-container {
-                    display: none;
-                }
-
-                /* .chartjs {
-                    max-width: 80% !important;
+            /* .category-chart .factor-chart {
+                    width: 80%;
                 } */
+        }
 
-                div.warning {
-                    background-color: coral !important;
-                    print-color-adjust: exact;
-                    -webkit-print-color-adjust: exact;
-                    -moz-print-color-adjust: exact;
-                }
+        input:checked~div.child label::before {
+            border-left: 10px solid transparent;
+            border-top: 10px solid rgb(131, 131, 131);
+            margin-top: 12px;
+            margin-right: 10px;
+        }
+
+        input:checked~div.child~div.category-chart {
+            max-height: 100%;
+            height: 100%;
+            border-top-left-radius: 0px;
+            border-top-right-radius: 0px;
+        }
+
+        .chartPage div:has(h1) {
+            width: 80vw;
+            margin-inline: auto;
+            margin-block: 3rem;
+        }
+
+        button {
+            font-size: 18px;
+            float: right;
+            background-color: #7826db;
+            border: none;
+            color: white;
+            padding: 0.5rem 2rem;
+            border-radius: 10px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #9557e1;
+        }
+
+        .footer {
+            width: 93vw;
+        }
+
+        .suggestions {
+            padding: 1rem;
+            background-color: #f4f4f4;
+            border-radius: 10px;
+            margin-top: 1rem;
+        }
+
+        .suggestions a {
+            color: #525153;
+            text-decoration: none;
+        }
+
+        .suggestions a:hover {
+            color: #6b6572;
+        }
+
+        .suggestions h2 {
+            margin-bottom: 1rem;
+        }
+
+        .suggestions p {
+            font-weight: 600;
+            color: #525153;
+        }
+
+        .suggestions ul {
+            padding: 1rem;
+        }
+
+        .suggestions ul li {
+            padding: 0.5rem;
+        }
+
+        @media screen and (min-width: 600px) {
+            .label {
+                width: 50%;
             }
+        }
 
-            div.accordion {
-                position: relative;
-                margin-block: 1em;
-                margin-inline: auto;
-            }
+        @media screen and (min-width: 892px) {
 
-            input {
-                position: absolute;
-                left: 0;
-                top: 0;
-                opacity: 0;
-                visibility: 0;
-            }
-
-            div.child {
-                position: relative;
-                background: white;
-                color: black;
-                padding: 1em;
-                border-radius: 10px;
-            }
-
-            input:checked ~ div.child {
-                border-bottom-left-radius: 0px;
-                border-bottom-right-radius: 0px;
-            }
-
-            label::before {
-                display: inline-block;
-                content: "";
-                border: 10px solid transparent;
-                border-left: 10px solid black;
-            }
-
-            label {
-                display: flex;
-                cursor: pointer;
-                position: relative;
-                align-items: center;
-                font-weight: 600;
-            }
-
-            input ~ div.child ~ div.category-chart {
-                max-height: 0px;
-                overflow: hidden;
-                background-color: white;
-            }
-
-            .chartPage > div.category-chart,
-            input:checked ~ div.child ~ div.category-chart {
-                padding: 1rem;
-            }
-
-            .category-chart:not(:has(canvas)) {
-                padding: 1rem;
-            }
-
+            .footer,
+            .accordion,
+            div.child,
             .category-chart {
-                position: relative;
-                margin: auto;
-                border-radius: 10px;
-                background-color: white;
-            }
-
-            @media print {
-                /* .category-chart {
-                    width: 80%;
-                } */
-
-                /* .category-chart .factor-chart {
-                    width: 80%;
-                } */
-            }
-
-            input:checked ~ div.child label::before {
-                border-left: 10px solid transparent;
-                border-top: 10px solid rgb(131, 131, 131);
-                margin-top: 12px;
-                margin-right: 10px;
-            }
-
-            input:checked ~ div.child ~ div.category-chart {
-                max-height: 100%;
-                height: 100%;
-                border-top-left-radius: 0px;
-                border-top-right-radius: 0px;
-            }
-
-            .chartPage div:has(h1) {
                 width: 80vw;
-                margin-inline: auto;
-                margin-block: 3rem;
             }
+        }
+    </style>
+</head>
 
-            button {
-                font-size: 18px;
-                float: right;
-                background-color: #7826db;
-                border: none;
-                color: white;
-                padding: 0.5rem 2rem;
-                border-radius: 10px;
-                cursor: pointer;
-            }
-
-            button:hover {
-                background-color: #9557e1;
-            }
-
-            .footer {
-                width: 93vw;
-            }
-
-            .suggestions {
-                padding: 1rem;
-                background-color: #f4f4f4;
-                border-radius: 10px;
-                margin-top: 1rem;
-            }
-            .suggestions a {
-                color: #525153;
-                text-decoration: none;
-            }
-
-            .suggestions a:hover {
-                color: #6b6572;
-            }
-
-            .suggestions h2 {
-                margin-bottom: 1rem;
-            }
-
-            .suggestions p {
-                font-weight: 600;
-                color: #525153;
-            }
-            .suggestions ul {
-                padding: 1rem;
-            }
-
-            .suggestions ul li {
-                padding: 0.5rem;
-            }
-
-            @media screen and (min-width: 600px) {
-                .label {
-                    width: 50%;
-                }
-            }
-
-            @media screen and (min-width: 892px) {
-                .footer,
-                .accordion,
-                div.child,
-                .category-chart {
-                    width: 80vw;
-                }
-            }
-        </style>
-    </head>
-
-    <body style="min-height: 100%">
-        <div class="page-header">
-            <img src="/logo.png" alt="Hei Teachers">
-            <img src="/eu-logo.png" alt="Hei Teachers">
+<body style="min-height: 100%">
+    <div class="page-header">
+        <img src="/logo.png" alt="Hei Teachers">
+        <img src="/eu-logo.png" alt="Hei Teachers">
+    </div>
+    <div class="chartPage">
+        <div>
+            <h1 class="likert-header">Results of the survey</h1>
         </div>
-        <div class="chartPage">
-            <div>
-                <h1 class="likert-header">Results of the survey</h1>
-            </div>
-            <div class="print-button-container">
-                <button
-                    type="button"
-                    class="btn btn-icon btn-outline-primary"
-                    onclick="printPage()"
-                    ontouchstart="printPage()"
-                >
-                    <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        width="24"
-                        height="24"
-                        viewBox="0 0 24 24"
-                        fill="none"
-                        stroke="currentColor"
-                        stroke-width="2"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                        class="feather feather-printer"
-                    >
-                        <polyline points="6 9 6 2 18 2 18 9"></polyline>
-                        <path
-                            d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"
-                        ></path>
-                        <rect x="6" y="14" width="12" height="8"></rect>
-                    </svg>
-                </button>
-            </div>
-            <div class="page-footer"></div>
+        <div class="print-button-container">
+            <button type="button" class="btn btn-icon btn-outline-primary" onclick="printPage()"
+                ontouchstart="printPage()">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                    class="feather feather-printer">
+                    <polyline points="6 9 6 2 18 2 18 9"></polyline>
+                    <path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path>
+                    <rect x="6" y="14" width="12" height="8"></rect>
+                </svg>
+            </button>
         </div>
+        <div class="page-footer"></div>
+    </div>
 
-        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-        <script>
-            function printPage() {
-                var isMobile = /iPhone|iPad|iPod|Android/i.test(
-                    navigator.userAgent
-                );
-                if (isMobile) {
-                    alert("Please use your device's print option.");
-                } else {
-                    // find checkboxes inside div with accordion class. check them all
-                    document
-                        .querySelectorAll(".accordion input[type='checkbox']")
-                        .forEach((input) => {
-                            input.checked = true;
-                        });
-                    window.print();
-                }
-            }
-            const getData = async () => {
-                try {
-                    let response = await fetch("./data.json");
-                    let data = await response.json();
-                    return data;
-                } catch (error) {
-                    return [];
-                }
-            };
-            let storedData = JSON.parse(
-                window.localStorage.getItem("survey-answer")
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        function printPage() {
+            var isMobile = /iPhone|iPad|iPod|Android/i.test(
+                navigator.userAgent
             );
-
-            const displayForm = async () => {
-                let data = await getData();
-
-                let groupedData = [];
-                function combineQuestionsByCategory(data) {
-                    return data.forEach(function (item) {
-                        var foundLanguage = groupedData.find(function (group) {
-                            return group.language === item.language;
-                        });
-
-                        if (!foundLanguage) {
-                            foundLanguage = {
-                                language: item.language,
-                                categories: []
-                            };
-                            groupedData.push(foundLanguage);
-                        }
-
-                        var foundCategory = foundLanguage.categories.find(
-                            function (category) {
-                                return category.category === item.category;
-                            }
-                        );
-
-                        if (!foundCategory) {
-                            foundCategory = {
-                                category: item.category,
-                                factors: []
-                            };
-                            foundLanguage.categories.push(foundCategory);
-                        }
-
-                        var foundFactor = foundCategory.factors.find(function (
-                            factor
-                        ) {
-                            return factor.factor === item.factor;
-                        });
-
-                        if (!foundFactor) {
-                            foundFactor = {
-                                factor: item.factor,
-                                items: []
-                            };
-                            foundCategory.factors.push(foundFactor);
-                        }
-
-                        foundFactor.items.push(item);
+            if (isMobile) {
+                alert("Please use your device's print option.");
+            } else {
+                // find checkboxes inside div with accordion class. check them all
+                document
+                    .querySelectorAll(".accordion input[type='checkbox']")
+                    .forEach((input) => {
+                        input.checked = true;
                     });
-                }
-                data = combineQuestionsByCategory(data);
-                data = groupedData;
+                window.print();
+            }
+        }
+        const getData = async () => {
+            try {
+                let response = await fetch("./data.json");
+                let data = await response.json();
+                return data;
+            } catch (error) {
+                return [];
+            }
+        };
+        let storedData = JSON.parse(
+            window.localStorage.getItem("survey-answer")
+        );
 
-                function assignScoresToItems(groupedData, survey) {
-                    let index = 0;
-                    groupedData.forEach((languageGroup) => {
-                        languageGroup.categories.forEach((categoryGroup) => {
-                            categoryGroup.total_puan = 0;
-                            categoryGroup.category_question_count = 0;
-                            categoryGroup.factors.forEach((factorGroup) => {
-                                factorGroup.total_puan = 0;
-                                factorGroup.factor_question_count = 0;
-                                factorGroup.items.forEach((item) => {
-                                    if (index >= survey.length) return;
+        const displayForm = async () => {
+            let data = await getData();
 
-                                    if (!item.hasOwnProperty("puan")) {
-                                        item.puan = survey[index];
-                                    }
+            let groupedData = [];
+            function combineQuestionsByCategory(data) {
+                return data.forEach(function (item) {
+                    var foundLanguage = groupedData.find(function (group) {
+                        return group.language === item.language;
+                    });
 
-                                    factorGroup.total_puan += parseInt(
-                                        item.puan
-                                    );
+                    if (!foundLanguage) {
+                        foundLanguage = {
+                            language: item.language,
+                            categories: []
+                        };
+                        groupedData.push(foundLanguage);
+                    }
 
-                                    categoryGroup.total_puan += parseInt(
-                                        item.puan
-                                    );
-                                    index++;
-                                });
+                    var foundCategory = foundLanguage.categories.find(
+                        function (category) {
+                            return category.category === item.category;
+                        }
+                    );
 
-                                factorGroup.factor_question_count =
-                                    factorGroup.items.length;
+                    if (!foundCategory) {
+                        foundCategory = {
+                            category: item.category,
+                            factors: []
+                        };
+                        foundLanguage.categories.push(foundCategory);
+                    }
 
-                                categoryGroup.category_question_count +=
-                                    factorGroup.items.length;
+                    var foundFactor = foundCategory.factors.find(function (
+                        factor
+                    ) {
+                        return factor.factor === item.factor;
+                    });
+
+                    if (!foundFactor) {
+                        foundFactor = {
+                            factor: item.factor,
+                            items: []
+                        };
+                        foundCategory.factors.push(foundFactor);
+                    }
+
+                    foundFactor.items.push(item);
+                });
+            }
+            data = combineQuestionsByCategory(data);
+            data = groupedData;
+
+            function assignScoresToItems(groupedData, survey) {
+                let index = 0;
+                groupedData.forEach((languageGroup) => {
+                    languageGroup.categories.forEach((categoryGroup) => {
+                        categoryGroup.total_puan = 0;
+                        categoryGroup.category_question_count = 0;
+                        categoryGroup.factors.forEach((factorGroup) => {
+                            factorGroup.total_puan = 0;
+                            factorGroup.factor_question_count = 0;
+                            factorGroup.items.forEach((item) => {
+                                if (index >= survey.length) return;
+
+                                if (!item.hasOwnProperty("puan")) {
+                                    item.puan = survey[index];
+                                }
+
+                                factorGroup.total_puan += parseInt(
+                                    item.puan
+                                );
+
+                                categoryGroup.total_puan += parseInt(
+                                    item.puan
+                                );
+                                index++;
                             });
+
+                            factorGroup.factor_question_count =
+                                factorGroup.items.length;
+
+                            categoryGroup.category_question_count +=
+                                factorGroup.items.length;
                         });
                     });
+                });
+            }
+
+            assignScoresToItems(data, storedData);
+
+            const chartPage = document.getElementsByClassName("chartPage")[0];
+
+            const categoryChart = document.createElement("div");
+            categoryChart.className = "category-chart";
+            categoryChart.style.height = "400px";
+            const categoryCanvas = document.createElement("canvas");
+
+            const categoryLabels = [];
+            const categoryValues = [];
+
+            let answer_type_count = 6;
+            data[0].categories.forEach((category) => {
+                let category_max_score =
+                    category.category_question_count * answer_type_count;
+                let category_average_percent =
+                    (category.total_puan * 100) / category_max_score;
+                categoryLabels.push(category.category);
+                categoryValues.push(category_average_percent);
+            });
+
+            const backgroundColors = (total) => {
+                let output = [],
+                    red = "#E63946",
+                    yellow = "#ffbe0b",
+                    green = "#80ed99";
+
+                for (let i = 0; i < categoryValues.length; i++) {
+                    // if values is less than 40, red
+                    // if values is between 40 and 70, yellow
+                    // if values is greater than 70, green
+                    if (categoryValues[i] < 40) {
+                        output.push(red);
+                    } else if (
+                        categoryValues[i] >= 40 &&
+                        categoryValues[i] <= 70
+                    ) {
+                        output.push(yellow);
+                    } else {
+                        output.push(green);
+                    }
                 }
 
-                assignScoresToItems(data, storedData);
+                return output;
+            };
 
-                const chartPage = document.getElementsByClassName("chartPage")[0];
+            const category_chart = new Chart(categoryCanvas, {
+                type: "bar",
+                data: {
+                    labels: categoryLabels,
+                    datasets: [
+                        {
+                            data: categoryValues,
+                            backgroundColor:
+                                backgroundColors(categoryValues),
+                            borderWidth: 2
+                        }
+                    ]
+                },
 
-                const categoryChart = document.createElement("div");
-                categoryChart.className = "category-chart";
-                categoryChart.style.height = "400px";
-                const categoryCanvas = document.createElement("canvas");
+                options: {
+                    indexAxis: "y",
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    elements: {
+                        bar: {
+                            borderWidth: 2
+                        }
+                    },
+                    plugins: {
+                        legend: {
+                            display: false
+                        },
+                        title: {
+                            display: true,
+                            text: "Percentage of answers by category"
+                        }
+                    },
+                    scales: {
+                        x: {
+                            min: 0,
+                            max: 100,
+                            grid: {
+                                color: "black",
+                                display: false
+                            },
+                            ticks: {
+                                color: "black"
+                            }
+                        },
+                        y: {
+                            ticks: {
+                                color: "black",
+                                display: window.innerWidth > 600
+                            },
+                            grid: {
+                                display: false
+                            }
+                        }
+                    },
+                    interaction: {
+                        intersect: false,
+                        axis: "xy",
+                        mode: "nearest"
+                    }
+                }
+            });
 
-                const categoryLabels = [];
-                const categoryValues = [];
+            categoryChart.appendChild(categoryCanvas);
+            chartPage.appendChild(categoryChart);
 
-                let answer_type_count = 6;
-                data[0].categories.forEach((category) => {
-                    let category_max_score =
-                        category.category_question_count * answer_type_count;
-                    let category_average_percent =
-                        (category.total_puan * 100) / category_max_score;
-                    categoryLabels.push(category.category);
-                    categoryValues.push(category_average_percent);
+            const pageFooter = document.querySelector(".page-footer");
+            const footerContent = document.createElement("div");
+            footerContent.style.display = "flex";
+            footerContent.style.justifyContent = "center";
+            footerContent.style.alignItems = "center";
+            footerContent.style.margin = "0rem";
+            const leftContent = document.createElement("div");
+            const footer = document.createElement("img");
+            footer.src = "/footer.png";
+            footer.alt = "Hei Teachers";
+            leftContent.appendChild(footer);
+            footerContent.appendChild(leftContent);
+            pageFooter.appendChild(footerContent);
+
+            data[0].categories.forEach((perData, key) => {
+                const factorLabels = [];
+                const factorValues = [];
+                const unitNames = [];
+
+                perData.factors.forEach((factor) => {
+                    let factor_max_score =
+                        factor.factor_question_count * answer_type_count;
+                    let factor_average_percent =
+                        (factor.total_puan * 100) / factor_max_score;
+
+                    unitNames.push({
+                        factor: factor.factor,
+                        units: factor.items.map((item) => ({
+                            unit_name: item.unit_name,
+                            link: item.unit_link
+                        }))
+                    });
+                    factorLabels.push(factor.factor);
+                    factorValues.push(factor_average_percent);
                 });
 
-                const backgroundColors = (total) => {
+                const accordionDiv = document.createElement("div");
+                accordionDiv.className = "accordion";
+                const input = document.createElement("input");
+                input.type = "checkbox";
+                input.id = `faq-${key + 1}`;
+                accordionDiv.appendChild(input);
+
+                const childDiv = document.createElement("div");
+                childDiv.className = "child";
+                accordionDiv.appendChild(childDiv);
+
+                const label = document.createElement("label");
+                label.htmlFor = `faq-${key + 1}`;
+                label.innerText = perData.category;
+
+                const canvasContainer = document.createElement("div");
+                canvasContainer.className = "category-chart";
+
+                const factorCanvas = document.createElement("canvas");
+
+                const backgroundColors = (factorValues) => {
                     let output = [],
                         red = "#E63946",
                         yellow = "#ffbe0b",
                         green = "#80ed99";
 
-                    for (let i = 0; i < categoryValues.length; i++) {
+                    for (let i = 0; i < factorValues.length; i++) {
                         // if values is less than 40, red
                         // if values is between 40 and 70, yellow
                         // if values is greater than 70, green
-                        if (categoryValues[i] < 40) {
+                        if (factorValues[i] < 40) {
                             output.push(red);
                         } else if (
-                            categoryValues[i] >= 40 &&
-                            categoryValues[i] <= 70
+                            factorValues[i] >= 40 &&
+                            factorValues[i] <= 70
                         ) {
                             output.push(yellow);
                         } else {
@@ -513,15 +649,33 @@
                     return output;
                 };
 
-                const category_chart = new Chart(categoryCanvas, {
+                function splitTickLabel(value, limit) {
+                    let words = value.split(" ");
+                    let lines = [];
+                    let line = "";
+                    words.forEach((word) => {
+                        if (line.length + word.length <= limit) {
+                            line += (line.length > 0 ? " " : "") + word;
+                        } else {
+                            lines.push(line);
+                            line = word;
+                        }
+                    });
+                    lines.push(line);
+                    return lines;
+                }
+
+                const factorChart = new Chart(factorCanvas, {
                     type: "bar",
                     data: {
-                        labels: categoryLabels,
+                        labels: factorLabels,
+                        responsive: true,
+                        maintainAspectRatio: false,
                         datasets: [
                             {
-                                data: categoryValues,
+                                data: factorValues,
                                 backgroundColor:
-                                    backgroundColors(categoryValues),
+                                    backgroundColors(factorValues),
                                 borderWidth: 2
                             }
                         ]
@@ -531,6 +685,7 @@
                         indexAxis: "y",
                         responsive: true,
                         maintainAspectRatio: false,
+                        barThickness: 32,
                         elements: {
                             bar: {
                                 borderWidth: 2
@@ -541,8 +696,7 @@
                                 display: false
                             },
                             title: {
-                                display: true,
-                                text: "Percentage of answers by category"
+                                display: false
                             }
                         },
                         scales: {
@@ -550,7 +704,6 @@
                                 min: 0,
                                 max: 100,
                                 grid: {
-                                    color: "black",
                                     display: false
                                 },
                                 ticks: {
@@ -560,10 +713,18 @@
                             y: {
                                 ticks: {
                                     color: "black",
-                                    display: window.innerWidth > 600
+                                    display: window.innerWidth > 600,
+                                    callback: function (value) {
+                                        let lines = splitTickLabel(
+                                            this.getLabelForValue(value),
+                                            50
+                                        );
+
+                                        return lines;
+                                    }
                                 },
                                 grid: {
-                                    display: false
+                                    display: false,
                                 }
                             }
                         },
@@ -575,210 +736,40 @@
                     }
                 });
 
-                categoryChart.appendChild(categoryCanvas);
-                chartPage.appendChild(categoryChart);
+                let canvasWrapper = document.createElement("div");
+                canvasWrapper.appendChild(factorCanvas);
+                canvasWrapper.className = "factor-chart";
+                canvasWrapper.style.height = (perData.factors.length * 35) + 70 + "px";
+                childDiv.appendChild(label);
+                canvasContainer.appendChild(canvasWrapper);
+                accordionDiv.appendChild(canvasContainer);
+                chartPage.appendChild(accordionDiv);
 
-                const pageFooter = document.querySelector(".page-footer");
-                const footerContent = document.createElement("div");
-                footerContent.style.display = "flex";
-                footerContent.style.justifyContent = "center";
-                footerContent.style.alignItems = "center";
-                footerContent.style.margin = "0rem";
-                const leftContent = document.createElement("div");
-                const footer = document.createElement("img");
-                footer.src = "/footer.png";
-                footer.alt = "Hei Teachers";
-                leftContent.appendChild(footer);
-                footerContent.appendChild(leftContent);
-                pageFooter.appendChild(footerContent);
-
-                data[0].categories.forEach((perData, key) => {
-                    const factorLabels = [];
-                    const factorValues = [];
-                    const unitNames = [];
-
-                    perData.factors.forEach((factor) => {
-                        let factor_max_score =
-                            factor.factor_question_count * answer_type_count;
-                        let factor_average_percent =
-                            (factor.total_puan * 100) / factor_max_score;
-
-                        unitNames.push({
-                            factor: factor.factor,
-                            units: factor.items.map((item) => ({
-                                unit_name: item.unit_name,
-                                link: item.unit_link
-                            }))
-                        });
-                        factorLabels.push(factor.factor);
-                        factorValues.push(factor_average_percent);
-                    });
-
-                    const accordionDiv = document.createElement("div");
-                    accordionDiv.className = "accordion";
-                    const input = document.createElement("input");
-                    input.type = "checkbox";
-                    input.id = `faq-${key + 1}`;
-                    accordionDiv.appendChild(input);
-
-                    const childDiv = document.createElement("div");
-                    childDiv.className = "child";
-                    accordionDiv.appendChild(childDiv);
-
-                    const label = document.createElement("label");
-                    label.htmlFor = `faq-${key + 1}`;
-                    label.innerText = perData.category;
-
-                    const canvasContainer = document.createElement("div");
-                    canvasContainer.className = "category-chart";
-                    
-                    const factorCanvas = document.createElement("canvas");
-
-                    const backgroundColors = (factorValues) => {
-                        let output = [],
-                            red = "#E63946",
-                            yellow = "#ffbe0b",
-                            green = "#80ed99";
-
-                        for (let i = 0; i < factorValues.length; i++) {
-                            // if values is less than 40, red
-                            // if values is between 40 and 70, yellow
-                            // if values is greater than 70, green
-                            if (factorValues[i] < 40) {
-                                output.push(red);
-                            } else if (
-                                factorValues[i] >= 40 &&
-                                factorValues[i] <= 70
-                            ) {
-                                output.push(yellow);
-                            } else {
-                                output.push(green);
-                            }
-                        }
-
-                        return output;
-                    };
-
-                    function splitTickLabel(value, limit) {
-                        let words = value.split(" ");
-                        let lines = [];
-                        let line = "";
-                        words.forEach((word) => {
-                            if (line.length + word.length <= limit) {
-                                line += (line.length > 0 ? " " : "") + word;
-                            } else {
-                                lines.push(line);
-                                line = word;
-                            }
-                        });
-                        lines.push(line);
-                        return lines;
-                    }
-
-                    const factorChart = new Chart(factorCanvas, {
-                        type: "bar",
-                        data: {
-                            labels: factorLabels,
-                            responsive: true,
-                            maintainAspectRatio: false,
-                            datasets: [
-                                {
-                                    data: factorValues,
-                                    backgroundColor:
-                                        backgroundColors(factorValues),
-                                    borderWidth: 2
-                                }
-                            ]
-                        },
-
-                        options: {
-                            indexAxis: "y",
-                            responsive: true,
-                            maintainAspectRatio: false,
-                            barThickness: 32,
-                            elements: {
-                                bar: {
-                                    borderWidth: 2
-                                }
-                            },
-                            plugins: {
-                                legend: {
-                                    display: false
-                                },
-                                title: {
-                                    display: false
-                                }
-                            },
-                            scales: {
-                                x: {
-                                    min: 0,
-                                    max: 100,
-                                    grid: {
-                                        display: false
-                                    },
-                                    ticks: {
-                                        color: "black"
-                                    }
-                                },
-                                y: {
-                                    ticks: {
-                                        color: "black",
-                                        display: window.innerWidth > 600,
-                                        callback: function (value) {
-                                            let lines = splitTickLabel(
-                                                this.getLabelForValue(value),
-                                                50
-                                            );
-
-                                            return lines;
-                                        }
-                                    },
-                                    grid: {
-                                        display: false,
-                                    }
-                                }
-                            },
-                            interaction: {
-                                intersect: false,
-                                axis: "xy",
-                                mode: "nearest"
-                            }
-                        }
-                    });
-
-                    let canvasWrapper = document.createElement("div");
-                    canvasWrapper.appendChild(factorCanvas);
-                    canvasWrapper.className = "factor-chart";
-                    canvasWrapper.style.height = (perData.factors.length * 35) + 70 + "px";
-                    childDiv.appendChild(label);
-                    canvasContainer.appendChild(canvasWrapper);
-                    accordionDiv.appendChild(canvasContainer);
-                    chartPage.appendChild(accordionDiv);
-
-                    let suggestionDiv = document.createElement("div");
-                    suggestionDiv.className = "suggestions";
-                    let h2 = document.createElement("h2");
-                    h2.innerText = "Suggestions";
-                    suggestionDiv.appendChild(h2);
-                    let p = document.createElement("p");
-                    p.innerText = "Click to below links to improve yourself:";
-                    suggestionDiv.appendChild(p);
-                    let ul = document.createElement("ul");
-                    unitNames.forEach((unit) => {
-                        let li = document.createElement("li");
-                        let a = document.createElement("a");
-                        a.href = unit.units[0].link;
-                        a.target = "_blank";
-                        a.innerText = unit.units[0].unit_name;
-                        li.appendChild(a);
-                        ul.appendChild(li);
-                    });
-                    suggestionDiv.appendChild(ul);
-                    canvasContainer.appendChild(suggestionDiv);
+                let suggestionDiv = document.createElement("div");
+                suggestionDiv.className = "suggestions";
+                let h2 = document.createElement("h2");
+                h2.innerText = "Suggestions";
+                suggestionDiv.appendChild(h2);
+                let p = document.createElement("p");
+                p.innerText = "Click to below links to improve yourself:";
+                suggestionDiv.appendChild(p);
+                let ul = document.createElement("ul");
+                unitNames.forEach((unit) => {
+                    let li = document.createElement("li");
+                    let a = document.createElement("a");
+                    a.href = unit.units[0].link;
+                    a.target = "_blank";
+                    a.innerText = unit.units[0].unit_name;
+                    li.appendChild(a);
+                    ul.appendChild(li);
                 });
-            };
+                suggestionDiv.appendChild(ul);
+                canvasContainer.appendChild(suggestionDiv);
+            });
+        };
 
-            displayForm();
-        </script>
-    </body>
+        displayForm();
+    </script>
+</body>
+
 </html>
