@@ -194,6 +194,13 @@
             font-weight: 600;
         }
 
+        @media print {
+            label {
+                margin-top: 100px !important;
+            }
+        }
+        
+
         input~div.child~div.category-chart {
             max-height: 0px;
             overflow: hidden;
@@ -218,7 +225,7 @@
 
         input:checked~div.child label::before {
             border-left: 10px solid transparent;
-            border-top: 10px solid rgb(131, 131, 131);
+            border-top: 10px solid black;
             margin-top: 12px;
             margin-right: 10px;
         }
@@ -316,7 +323,7 @@
         </div>
 
         <div class="page-footer"></div>
-    </div>
+    </div>z
 
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script>
