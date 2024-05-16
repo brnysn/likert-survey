@@ -127,17 +127,17 @@
                     display: table-footer-group;
                 }
 
-                .break-300 {
+                /* .break-300 {
                     margin-top: 300px;
-                }
+                } */
 
                 .print-button-container {
                     display: none;
                 }
 
-                .chartjs {
-                    max-width: 100% !important;
-                }
+                /* .chartjs {
+                    max-width: 80% !important;
+                } */
 
                 div.warning {
                     background-color: coral !important;
@@ -151,27 +151,22 @@
                 position: relative;
                 margin-block: 1em;
                 margin-inline: auto;
-                width: 93vw;
             }
 
             input {
                 position: absolute;
                 left: 0;
                 top: 0;
-                height: 100%;
-                width: 100%;
                 opacity: 0;
                 visibility: 0;
             }
 
             div.child {
+                position: relative;
                 background: white;
                 color: black;
                 padding: 1em;
-                position: relative;
                 border-radius: 10px;
-                display: block;
-                margin-inline: auto;
             }
 
             input:checked ~ div.child {
@@ -180,18 +175,17 @@
             }
 
             label::before {
-                content: "";
                 display: inline-block;
+                content: "";
                 border: 10px solid transparent;
-                border-left: 10px solid rgb(131, 131, 131);
+                border-left: 10px solid black;
             }
 
             label {
+                display: flex;
                 cursor: pointer;
                 position: relative;
-                display: flex;
                 align-items: center;
-                color: gray;
                 font-weight: 600;
             }
 
@@ -199,10 +193,6 @@
                 max-height: 0px;
                 overflow: hidden;
                 background-color: white;
-            }
-
-            div.p p {
-                padding: 1rem;
             }
 
             .chartPage > div.category-chart,
@@ -217,14 +207,18 @@
             .category-chart {
                 position: relative;
                 margin: auto;
-                /* height: 50vh; */
-                width: 93vw;
                 border-radius: 10px;
                 background-color: white;
             }
 
-            .factor-chart {
-                width: 100%;
+            @media print {
+                /* .category-chart {
+                    width: 80%;
+                } */
+
+                /* .category-chart .factor-chart {
+                    width: 80%;
+                } */
             }
 
             input:checked ~ div.child label::before {
@@ -242,8 +236,8 @@
             }
 
             .chartPage div:has(h1) {
-                margin-inline: auto;
                 width: 80vw;
+                margin-inline: auto;
                 margin-block: 3rem;
             }
 
@@ -474,15 +468,12 @@
 
                 assignScoresToItems(data, storedData);
 
-                const chartPage =
-                    document.getElementsByClassName("chartPage")[0];
+                const chartPage = document.getElementsByClassName("chartPage")[0];
 
                 const categoryChart = document.createElement("div");
                 categoryChart.className = "category-chart";
+                categoryChart.style.height = "400px";
                 const categoryCanvas = document.createElement("canvas");
-                categoryCanvas.id = `categoryChart`;
-                // categoryCanvas.style.width = "100%";
-                // categoryCanvas.style.height = "100%";
 
                 const categoryLabels = [];
                 const categoryValues = [];
@@ -642,7 +633,6 @@
                     canvasContainer.className = "category-chart";
                     
                     const factorCanvas = document.createElement("canvas");
-                    factorCanvas.id = `factorChart`;
 
                     const backgroundColors = (factorValues) => {
                         let output = [],
