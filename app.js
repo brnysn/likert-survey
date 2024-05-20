@@ -88,17 +88,27 @@ const displayForm = async () => {
         (item) => item.language === surveyLanguage
     ).categories;
 
-    const formContainer = document.querySelector(".likert-survey");
+    const formContainer = document.querySelector(".survey-start");
     let currentPage = 0;
     const inputReferences = [];
 
     function showPage(pageIndex) {
-        formContainer.innerHTML = "";
+        const category = data[pageIndex];
+        console.log(category);
+        formContainer.innerHTML = `<div class="survey-options d-grid-2">
+                                        <div><h2>${category.category}</h2></div>
+                                        <div class="d-grid-5 d-none d-md-flex">
+                                            <div><h4>Not applicable</h4></div>
+                                            <div><h4>Strongly agree</h4></div>
+                                            <div><h4>Agree</h4></div>
+                                            <div><h4>Slightly agree</h4></div>
+                                            <div><h4>Disagree</h4></div>
+                                            <div><h4>Strongly disagree</h4></div>
+                                        </div>
+                                    </div>`;
 
         const page = document.createElement("div");
         page.classList.add("page");
-
-        const category = data[pageIndex];
 
         category.items.forEach((question, key) => {
             const questionDiv = document.createElement("div");
