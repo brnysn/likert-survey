@@ -1,29 +1,27 @@
 let surveyLanguage = "en"; // Default language is "en"
 document.getElementById("error").style.display = "none";
-document
-    .getElementsByClassName("survey-intro")[0]
-    .addEventListener("change", function () {
-        var university = document.getElementById("university").value;
-        var field = document.getElementById("field").value;
-        var email = document.getElementById("email").value;
-        var isValidEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
-        var occupation = document.querySelector(
-            'input[name="occupation"]:checked'
-        );
-        var country = document.getElementById("country").value;
+document.getElementsByClassName("survey-intro")[0].addEventListener("change", function () {
+    var university = document.getElementById("university").value;
+    var field = document.getElementById("field").value;
+    var email = document.getElementById("email").value;
+    var isValidEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+    var occupation = document.querySelector(
+        'input[name="occupation"]:checked'
+    );
+    var country = document.getElementById("country").value;
 
-        if (!isValidEmail) {
-            document.getElementById("error").style.display = "block";
-        } else {
-            document.getElementById("error").style.display = "none";
-        }
+    if (!isValidEmail) {
+        document.getElementById("error").style.display = "block";
+    } else {
+        document.getElementById("error").style.display = "none";
+    }
 
-        if (university && field && isValidEmail && occupation && country) {
-            document.getElementById("startButton").disabled = false;
-        } else {
-            document.getElementById("startButton").disabled = true;
-        }
-    });
+    if (university && field && isValidEmail && occupation && country) {
+        document.getElementById("startButton").disabled = false;
+    } else {
+        document.getElementById("startButton").disabled = true;
+    }
+});
 
 let survey_intro = document.getElementsByClassName("survey-intro")[0];
 let survey_start = document.getElementsByClassName("survey-start")[0];
