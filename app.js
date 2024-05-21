@@ -23,14 +23,24 @@ document.getElementsByClassName("survey-intro")[0].addEventListener("change", fu
     }
 });
 
+// add changed event listener to radio buttons: input[name='occupation']
+// add value to local storage for later use
+document.querySelectorAll('input[name="occupation"]').forEach((input) => {
+    input.addEventListener("change", function () {
+        window.localStorage.setItem("hei_teachers_occupation", input.value);
+    });
+});
+
 let survey_intro = document.getElementsByClassName("survey-intro")[0];
 let survey_start = document.getElementsByClassName("survey-start")[0];
 let startButton = document.getElementById("startButton");
 
 startButton.addEventListener("click", function (event) {
     event.preventDefault();
+    // surveyLanguage = document.getElementById("country").value;
+    // "en" is the default language for now
 
-    surveyLanguage = document.getElementById("country").value;
+    displayForm();
 
     survey_intro.style.display = "none";
     survey_start.style.display = "block";
@@ -38,8 +48,9 @@ startButton.addEventListener("click", function (event) {
 });
 
 const getData = async () => {
+    const data_name = window.localStorage.getItem("hei_teachers_occupation") ?? "teacher";
     try {
-        let response = await fetch("./data.json");
+        let response = await fetch(`./${data_name}.json`);
         let data = await response.json();
         return data;
     } catch (error) {
@@ -48,7 +59,7 @@ const getData = async () => {
 };
 
 const displayForm = async () => {
-    let data = await getData();
+    let rawData = await getData();
 
     let groupedData = [];
     function combineQuestionsByCategory(data) {
@@ -65,9 +76,7 @@ const displayForm = async () => {
                 groupedData.push(foundLanguage);
             }
 
-            var foundCategory = foundLanguage.categories.find(function (
-                category
-            ) {
+            var foundCategory = foundLanguage.categories.find(function (category) {
                 return category.category === item.category;
             });
 
@@ -81,8 +90,9 @@ const displayForm = async () => {
             foundCategory.items.push(item);
         });
     }
-    data = combineQuestionsByCategory(data);
-    data = groupedData.find(
+    combineQuestionsByCategory(rawData);
+
+    let data = groupedData.find(
         (item) => item.language === surveyLanguage
     ).categories;
 
@@ -92,7 +102,6 @@ const displayForm = async () => {
 
     function showPage(pageIndex) {
         const category = data[pageIndex];
-        console.log(category);
         formContainer.innerHTML = `<div class="survey-options d-grid-2">
                                         <div><h2>${category.category}</h2></div>
                                         <div class="d-grid-5 d-none d-md-flex">
@@ -223,10 +232,7 @@ const displayForm = async () => {
                     }
                 });
             });
-            window.localStorage.setItem(
-                "survey-answer",
-                JSON.stringify(selectedValues)
-            );
+            window.localStorage.setItem("hei_teachers_survey_answer", JSON.stringify(selectedValues));
             window.location.href = "chart.html";
             // try {
             //     const response = await fetch("api-endpoint", {
@@ -255,5 +261,3 @@ const displayForm = async () => {
 
     showPage(currentPage);
 };
-
-displayForm();

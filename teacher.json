@@ -1,0 +1,682 @@
+﻿[
+    {
+        "language": "en",
+        "category": "Leadership/ School's perspective",
+        "factor": "Inclusive Digital Strategy and Policy for Empowering Inclusive Digital Education",
+        "question": "At our HEI, we have an inclusive digital education strategy.",
+        "unit_name": "Inclusive digital education strategy",
+        "unit_link": "https://set4inclusion.eu/leadership-schools-perspective/unit-policies-for-inclusive-digital-education/"
+    },
+    {
+        "language": "en",
+        "category": "Leadership/ School's perspective",
+        "factor": "Inclusive Digital Strategy and Policy for Empowering Inclusive Digital Education",
+        "question": "Our HEI management involves us teachers in developing the HEI’s inclusive digital education strategy.",
+        "unit_name": "Inclusive digital education strategy",
+        "unit_link": "https://set4inclusion.eu/leadership-schools-perspective/unit-policies-for-inclusive-digital-education/"
+    },
+    {
+        "language": "en",
+        "category": "Leadership/ School's perspective",
+        "factor": "Inclusive Digital Strategy and Policy for Empowering Inclusive Digital Education",
+        "question": "At our HEI, we have established policies for enabling inclusive digital education.",
+        "unit_name": "Policies for inclusive digital educatio",
+        "unit_link": "https://set4inclusion.eu/leadership-schools-perspective/unit-policies-for-inclusive-digital-education/"
+    },
+    {
+        "language": "en",
+        "category": "Leadership/ School's perspective",
+        "factor": "Inclusive Digital Strategy and Policy for Empowering Inclusive Digital Education",
+        "question": "At our HEI, we have news/information/announcements about the policies for enabling inclusive digital education to the HEI community.",
+        "unit_name": "Policies for inclusive digital educatio",
+        "unit_link": "https://set4inclusion.eu/leadership-schools-perspective/unit-policies-for-inclusive-digital-education/"
+    },
+    {
+        "language": "en",
+        "category": "Leadership/ School's perspective",
+        "factor": "Inclusive Digital Pedagogy & Supportive Culture",
+        "question": "Our HEI management supports us teachers in using contemporary pedagogical approaches to teaching with inclusive digital technologies.",
+        "unit_name": "Support for inclusive pedagogical approaches to teaching with digital technologies",
+        "unit_link": "#"
+    },
+    {
+        "language": "en",
+        "category": "Leadership/ School's perspective",
+        "factor": "Inclusive Digital Pedagogy & Supportive Culture",
+        "question": "Our HEI has eliminated or minimized digital (education) discrimination.",
+        "unit_name": "Minimized digital (education) discrimination",
+        "unit_link": "https://set4inclusion.eu/leadership-schools-perspective/unit-minimized-digital-education-discrimination/"
+    },
+    {
+        "language": "en",
+        "category": "Leadership/ School's perspective",
+        "factor": "Inclusive Digital Pedagogy & Supportive Culture",
+        "question": "At our HEI, management encourages teachers to communicate and cooperate with the management.",
+        "unit_name": "Collaboration and communication between the school and the teacher",
+        "unit_link": "https://set4inclusion.eu/leadership-schools-perspective/unit-collaboration-and-communication-between-the-school-and-the-teacher/"
+    },
+    {
+        "language": "en",
+        "category": "Leadership/ School's perspective",
+        "factor": "Inclusive Digital Pedagogy & Supportive Culture",
+        "question": "At our HEI, the teachers are inspired with awareness about students' disabilities (e.g. physical, mental, etc.).",
+        "unit_name": "Raising Awareness on Disability",
+        "unit_link": "https://set4inclusion.eu/leadership-schools-perspective/unit-raising-awareness-on-disability/"
+    },
+    {
+        "language": "en",
+        "category": "Leadership/ School's perspective",
+        "factor": "Professional Development for Inclusive Digital Education",
+        "question": "At our HEI, teachers have time to explore inclusive digital technologies (e.g. through individual learning, participation in training, etc.).",
+        "unit_name": "Inclusive by Design: Advancing Digital Literacy for All",
+        "unit_link": "https://set4inclusion.eu/leadership-schools-perspective/unit-time-to-explore-inclusive-and-accessible-digital-technologies/"
+    },
+    {
+        "language": "en",
+        "category": "Leadership/ School's perspective",
+        "factor": "Professional Development for Inclusive Digital Education",
+        "question": "At our HEI, the management supports teachers in acquiring knowledge and skills in digital literacy for inclusive digital education (financially or otherwise).",
+        "unit_name": "Inclusive by Design: Advancing Digital Literacy for All",
+        "unit_link": "https://set4inclusion.eu/leadership-schools-perspective/unit-acquiring-knowledge-and-skills-in-digital-literacy/"
+    },
+    {
+        "language": "en",
+        "category": "Leadership/ School's perspective",
+        "factor": "Professional Development for Inclusive Digital Education",
+        "question": "At our HEI, teachers are supported in trying new ways of inclusive teaching with digital technologies.",
+        "unit_name": "Inclusive by Design: Advancing Digital Literacy for All",
+        "unit_link": "https://set4inclusion.eu/leadership-schools-perspective/unit-new-ways-of-inclusive-digital-teaching/"
+    },
+    {
+        "language": "en",
+        "category": "Leadership/ School's perspective",
+        "factor": "Professional Development for Inclusive Digital Education",
+        "question": "Our HEI provides funds to support inclusive digital education.",
+        "unit_name": "Inclusive by Design: Advancing Digital Literacy for All",
+        "unit_link": "#"
+    },
+    {
+        "language": "en",
+        "category": "Collaboration and Networking",
+        "factor": "Collaborative Evaluation and Planning for Inclusive Digital Teaching",
+        "question": "The progress in inclusive teaching and learning with digital technologies is reviewed within our HEI (i.e. online surveys or similar).",
+        "unit_name": "Collaborative planning, reviewing and managing",
+        "unit_link": "#"
+    },
+    {
+        "language": "en",
+        "category": "Collaboration and Networking",
+        "factor": "Collaborative Evaluation and Planning for Inclusive Digital Teaching",
+        "question": "Within our HEI, we discuss the advantages and disadvantages of inclusive teaching and learning with digital technologies.",
+        "unit_name": "Collaborative planning, reviewing and managing",
+        "unit_link": "#"
+    },
+    {
+        "language": "en",
+        "category": "Collaboration and Networking",
+        "factor": "Collaborative Evaluation and Planning for Inclusive Digital Teaching",
+        "question": "At our HEI, the management and teachers plan and review inclusive courses in cooperation.",
+        "unit_name": "Collaborative planning, reviewing and managing",
+        "unit_link": "#"
+    },
+    {
+        "language": "en",
+        "category": "Collaboration and Networking",
+        "factor": "Collaborative Evaluation and Planning for Inclusive Digital Teaching",
+        "question": "At our HEI, the management and teachers plan and review inclusive teaching methods in cooperation.",
+        "unit_name": "Collaborative planning, reviewing and managing",
+        "unit_link": "#"
+    },
+    {
+        "language": "en",
+        "category": "Collaboration and Networking",
+        "factor": "Shared Vision and Collaborative Culture for Inclusive Digital Education",
+        "question": "At our HEI, teachers share a common vision of digital educational inclusion.",
+        "unit_name": "Vision and Collaborative Culture",
+        "unit_link": "#"
+    },
+    {
+        "language": "en",
+        "category": "Collaboration and Networking",
+        "factor": "Shared Vision and Collaborative Culture for Inclusive Digital Education",
+        "question": "Our HEI encourages inclusive digital collaboration and communication between staff and students.",
+        "unit_name": "Vision and Collaborative Culture",
+        "unit_link": "#"
+    },
+    {
+        "language": "en",
+        "category": "Collaboration and Networking",
+        "factor": "Collaborative Engagement for Inclusive Digital Partnerships",
+        "question": "Our HEI enables inclusive collaboration with parents/carers and members of local communities through digital technologies.",
+        "unit_name": "Synergies for Inclusive Digital Education",
+        "unit_link": "https://set4inclusion.eu/collaboration-and-networking/inclusive-digital-education-synergies/"
+    },
+    {
+        "language": "en",
+        "category": "Collaboration and Networking",
+        "factor": "Collaborative Engagement for Inclusive Digital Partnerships",
+        "question": "In our HEI, we collaborate with other HEIs or organizations to support inclusive digital education.",
+        "unit_name": "Synergies for Inclusive Digital Education",
+        "unit_link": "https://set4inclusion.eu/collaboration-and-networking/inclusive-digital-education-synergies/"
+    },
+    {
+        "language": "en",
+        "category": "Infrastructure and Equipment/ Tools and Technology",
+        "factor": "Accessible Infrastructure for Inclusive Learning",
+        "question": "In our HEI, the digital infrastructure supports inclusive and accessible education with digital technologies.",
+        "unit_name": "Is my digital infrastructure accessible and inclusive?",
+        "unit_link": "https://set4inclusion.eu/infrastructure-and-equipment-tools-and-technology/unit-is-my-digital-infrastructure-accessible-and-inclusive/"
+    },
+    {
+        "language": "en",
+        "category": "Infrastructure and Equipment/ Tools and Technology",
+        "factor": "Accessible Infrastructure for Inclusive Learning",
+        "question": "In our HEI, there is free Internet access, enabling inclusive digital teaching and learning.",
+        "unit_name": "Is my digital infrastructure accessible and inclusive?",
+        "unit_link": "https://set4inclusion.eu/infrastructure-and-equipment-tools-and-technology/unit-is-my-digital-infrastructure-accessible-and-inclusive/"
+    },
+    {
+        "language": "en",
+        "category": "Infrastructure and Equipment/ Tools and Technology",
+        "factor": "Accessible Infrastructure for Inclusive Learning",
+        "question": " In our HEI, physical spaces support inclusive digital education.",
+        "unit_name": "Is my classroom accessible and inclusive?",
+        "unit_link": "https://set4inclusion.eu/infrastructure-and-equipment-tools-and-technology/unit-is-my-classroom-accessible-and-inclusive/"
+    },
+    {
+        "language": "en",
+        "category": "Infrastructure and Equipment/ Tools and Technology",
+        "factor": "Accessible Infrastructure for Inclusive Learning",
+        "question": "At our HEI, we provide accessible online resources (e.g. libraries, repositories, teaching and learning materials).",
+        "unit_name": "Accessible online resources",
+        "unit_link": "#"
+    },
+    {
+        "language": "en",
+        "category": "Infrastructure and Equipment/ Tools and Technology",
+        "factor": "Accessible Devices for Inclusive Teaching and Learning",
+        "question": "In our HEI, there are accessible digital devices and assistive products available for inclusive digital education.",
+        "unit_name": "What are Digital devices? Introduction",
+        "unit_link": "https://set4inclusion.eu/infrastructure-and-equipment-tools-and-technology/unit-introduction-what-are-digital-devices/"
+    },
+    {
+        "language": "en",
+        "category": "Infrastructure and Equipment/ Tools and Technology",
+        "factor": "Accessible Devices for Inclusive Teaching and Learning",
+        "question": "In our HEI, there are school-owned portable devices and/or assistive products that students can take home when needed.",
+        "unit_name": "Digital devices in my HEI",
+        "unit_link": "#"
+    },
+    {
+        "language": "en",
+        "category": "Infrastructure and Equipment/ Tools and Technology",
+        "factor": "Accessible Devices for Inclusive Teaching and Learning",
+        "question": "Our HEI allows students to bring and use their portable devices and assistive products during lessons.",
+        "unit_name": "Digital devices in my HEI",
+        "unit_link": "#"
+    },
+    {
+        "language": "en",
+        "category": "Infrastructure and Equipment/ Tools and Technology",
+        "factor": "Accessible Devices for Inclusive Teaching and Learning",
+        "question": "Our HEI has established a process (workflow for students and teachers) for acquiring portable devices and/or assistive products.",
+        "unit_name": "From Application to Implementation: Understanding HEI's Process for Accessible Learning Tools",
+        "unit_link": "https://set4inclusion.eu/infrastructure-and-equipment-tools-and-technology/unit-from-application-to-implementation-understanding-heis-process-for-accessible-learning-tools/"
+    },
+    {
+        "language": "en",
+        "category": "Infrastructure and Equipment/ Tools and Technology",
+        "factor": "Digital Accessibility Support for Inclusive Learning",
+        "question": "Our HEI provides technical support for inclusive digital teaching and learning.",
+        "unit_name": "Technical support for inclusive digital teaching and learning",
+        "unit_link": "https://set4inclusion.eu/infrastructure-and-equipment-tools-and-technology/technical-support-for-inclusive-digital-teaching-and-learning/"
+    },
+    {
+        "language": "en",
+        "category": "Infrastructure and Equipment/ Tools and Technology",
+        "factor": "Digital Accessibility Support for Inclusive Learning",
+        "question": "Our HEI provides accessibility solutions for students who need special support (e.g. learning materials in Braille, sign language interpreter, etc.).",
+        "unit_name": "Technical support for inclusive digital teaching and learning",
+        "unit_link": "https://set4inclusion.eu/infrastructure-and-equipment-tools-and-technology/technical-support-for-inclusive-digital-teaching-and-learning/"
+    },
+    {
+        "language": "en",
+        "category": "Infrastructure and Equipment/ Tools and Technology",
+        "factor": "Inclusion and Equity in Digital Learning",
+        "question": "In our HEI, we have measures in place to identify the challenges that arise with inclusive education related to students' learning needs and socio-economic backgrounds.",
+        "unit_name": "Measuring and identifying challenges",
+        "unit_link": "#"
+    },
+    {
+        "language": "en",
+        "category": "Infrastructure and Equipment/ Tools and Technology",
+        "factor": "Inclusion and Equity in Digital Learning",
+        "question": "In our HEI, we have an established process to help teachers deal with inclusive digital education challenges related to students' learning needs and socio-economic backgrounds.",
+        "unit_name": "Measuring and identifying challenges",
+        "unit_link": "#"
+    },
+    {
+        "language": "en",
+        "category": "Continuous Professional Development",
+        "factor": "Continuous Professional Development for Inclusive Digital Teaching",
+        "question": "Our HEI management discusses with us our continuing professional development (CPD) needs for inclusive teaching with digital technologies.",
+        "unit_name": "Empowering Educators: Continuous Development for Inclusive Digital Pedagogy",
+        "unit_link": "#"
+    },
+    {
+        "language": "en",
+        "category": "Continuous Professional Development",
+        "factor": "Continuous Professional Development for Inclusive Digital Teaching",
+        "question": "Our HEI provides us with opportunities to participate in CPD for inclusive education with digital technologies.",
+        "unit_name": "Empowering Educators: Continuous Development for Inclusive Digital Pedagogy",
+        "unit_link": "#"
+    },
+    {
+        "language": "en",
+        "category": "Continuous Professional Development",
+        "factor": "Continuous Professional Development for Inclusive Digital Teaching",
+        "question": "Our HEI management supports us in sharing experiences within the HEI community about inclusive education with digital technologies.",
+        "unit_name": "Empowering Educators: Continuous Development for Inclusive Digital Pedagogy",
+        "unit_link": "#"
+    },
+    {
+        "language": "en",
+        "category": "Continuous Professional Development",
+        "factor": "Continuous Professional Development for Inclusive Digital Teaching",
+        "question": "Our HEI management supports us in acquiring the pedagogical knowledge and skills required for inclusive education. ",
+        "unit_name": "Empowering Educators: Continuous Development for Inclusive Digital Pedagogy",
+        "unit_link": "#"
+    },
+    {
+        "language": "en",
+        "category": "Continuous Professional Development",
+        "factor": "Continuous Professional Development for Inclusive Digital Teaching",
+        "question": "At the HEI, we are regularly informed about current activities related to CPD.",
+        "unit_name": "Empowering Educators: Continuous Development for Inclusive Digital Pedagogy",
+        "unit_link": "#"
+    },
+    {
+        "language": "en",
+        "category": "Pedagogy: Supports and Resources",
+        "factor": "Inclusive Digital Teaching Practices",
+        "question": "In our HEI, I use virtual learning environments that support inclusive education.",
+        "unit_name": "Digital Inclusivity in Education: Strategies and Best Practices",
+        "unit_link": "#"
+    },
+    {
+        "language": "en",
+        "category": "Pedagogy: Supports and Resources",
+        "factor": "Inclusive Digital Teaching Practices",
+        "question": "I use digital technologies for inclusive communication with students.",
+        "unit_name": "Digital Inclusivity in Education: Strategies and Best Practices",
+        "unit_link": "#"
+    },
+    {
+        "language": "en",
+        "category": "Pedagogy: Supports and Resources",
+        "factor": "Inclusive Digital Teaching Practices",
+        "question": "In our HEI, I’m supported in responding to students’ digital diversity. ",
+        "unit_name": "Digital Inclusivity in Education: Strategies and Best Practices",
+        "unit_link": "#"
+    },
+    {
+        "language": "en",
+        "category": "Pedagogy: Supports and Resources",
+        "factor": "Inclusive Digital Teaching Practices",
+        "question": "In our HEI, I get technical support for implementing inclusive digital education. ",
+        "unit_name": "Inclusive Digital Education Implementation Methodologies",
+        "unit_link": "https://set4inclusion.eu/pedagogy-supports-and-resources/unit-inclusive-digital-education-implementation-methodologies/"
+    },
+    {
+        "language": "en",
+        "category": "Pedagogy: Supports and Resources",
+        "factor": "Inclusive Digital Resources",
+        "question": "I search and use inclusive online/digital educational resources.",
+        "unit_name": "Inclusive digital educational resources",
+        "unit_link": "#"
+    },
+    {
+        "language": "en",
+        "category": "Pedagogy: Supports and Resources",
+        "factor": "Inclusive Digital Resources",
+        "question": "I develop inclusive digital resources to support their inclusive teaching.",
+        "unit_name": "Inclusive digital educational resources",
+        "unit_link": "#"
+    },
+    {
+        "language": "en",
+        "category": "Pedagogy: Supports and Resources",
+        "factor": "Inclusive Digital Resources",
+        "question": "I use inclusive open educational resources.",
+        "unit_name": "Inclusive digital educational resources",
+        "unit_link": "#"
+    },
+    {
+        "language": "en",
+        "category": "Pedagogy: Implementation in the classroom",
+        "factor": "Personalized and Engaging Digital Learning",
+        "question": "I use digital technologies to personalize and tailor my teaching to students’ individual needs.",
+        "unit_name": "Tailoring to students’ needs, fostering creativity and engaging students",
+        "unit_link": "#"
+    },
+    {
+        "language": "en",
+        "category": "Pedagogy: Implementation in the classroom",
+        "factor": "Personalized and Engaging Digital Learning",
+        "question": "I use inclusive digital learning activities that foster students’ creativity. ",
+        "unit_name": "Tailoring to students’ needs, fostering creativity and engaging students",
+        "unit_link": "#"
+    },
+    {
+        "language": "en",
+        "category": "Pedagogy: Implementation in the classroom",
+        "factor": "Personalized and Engaging Digital Learning",
+        "question": "I set inclusive digital learning activities that engage and motivate students. ",
+        "unit_name": "Tailoring to students’ needs, fostering creativity and engaging students",
+        "unit_link": "#"
+    },
+    {
+        "language": "en",
+        "category": "Pedagogy: Implementation in the classroom",
+        "factor": "Inclusive Classroom Collaboration and Respectful Environment",
+        "question": "In my classroom, the environment is respectful and welcoming (everyone is made to feel welcome and treated with respect). ",
+        "unit_name": "My classroom is inclusive! Part 1",
+        "unit_link": "#"
+    },
+    {
+        "language": "en",
+        "category": "Pedagogy: Implementation in the classroom",
+        "factor": "Inclusive Classroom Collaboration and Respectful Environment",
+        "question": "In my classroom, by using digital tools, all students feel equally valued.",
+        "unit_name": "Fostering Equal Value in HEI Classrooms",
+        "unit_link": "#"
+    },
+    {
+        "language": "en",
+        "category": "Pedagogy: Implementation in the classroom",
+        "factor": "Inclusive Classroom Collaboration and Respectful Environment",
+        "question": "In my classroom, digital technologies enable a positive environment based on mutual respect between students and teachers.",
+        "unit_name": "Who is in my classroom?",
+        "unit_link": "#"
+    },
+    {
+        "language": "en",
+        "category": "Pedagogy: Implementation in the classroom",
+        "factor": "Inclusive Classroom Collaboration and Respectful Environment",
+        "question": "Digital technologies in my classroom facilitate the organization of teaching groups in which students can collaborate by valuing the diversity of each one. ",
+        "unit_name": "My classroom is inclusive! Part 2",
+        "unit_link": "#"
+    },
+    {
+        "language": "en",
+        "category": "Pedagogy: Implementation in the classroom",
+        "factor": "Inclusive Classroom Collaboration and Respectful Environment",
+        "question": "I use digital technologies to facilitate inclusive collaboration among students.",
+        "unit_name": "My classroom is inclusive! Part 2",
+        "unit_link": "#"
+    },
+    {
+        "language": "en",
+        "category": "Pedagogy: Implementation in the classroom",
+        "factor": "Inclusive Classroom Collaboration and Respectful Environment",
+        "question": "In my classroom, digital technologies support a safe and trustful educational environment.",
+        "unit_name": "Security first!",
+        "unit_link": "#"
+    },
+    {
+        "language": "en",
+        "category": "Assessment Practices/ Inclusion Assessment",
+        "factor": "Inclusive Digital Assessment Practices",
+        "question": "I use inclusive and accessible digital technologies to assess students’ skills. ",
+        "unit_name": "Inclusive assessment with digital technologies",
+        "unit_link": "#"
+    },
+    {
+        "language": "en",
+        "category": "Assessment Practices/ Inclusion Assessment",
+        "factor": "Inclusive Digital Assessment Practices",
+        "question": "Our HEI management supports me in using digital technologies for inclusive assessment. ",
+        "unit_name": "Inclusive assessment with digital technologies",
+        "unit_link": "#"
+    },
+    {
+        "language": "en",
+        "category": "Assessment Practices/ Inclusion Assessment",
+        "factor": "Inclusive Digital Assessment Practices",
+        "question": "I use inclusive digital technologies to provide timely feedback to students.",
+        "unit_name": "Digital Feedback and Self-Reflection",
+        "unit_link": "#"
+    },
+    {
+        "language": "en",
+        "category": "Assessment Practices/ Inclusion Assessment",
+        "factor": "Inclusive Digital Assessment Practices",
+        "question": "I use inclusive digital technologies to enable students to self-reflect on their own learning. ",
+        "unit_name": "Digital Feedback and Self-Reflection",
+        "unit_link": "#"
+    },
+    {
+        "language": "en",
+        "category": "Assessment Practices/ Inclusion Assessment",
+        "factor": "Inclusive Digital Assessment Practices",
+        "question": "I use inclusive digital technologies to enable students to provide feedback on other students’ work.",
+        "unit_name": "Digital Feedback and Self-Reflection",
+        "unit_link": "#"
+    },
+    {
+        "language": "en",
+        "category": "Assessment Practices/ Inclusion Assessment",
+        "factor": "Data-Driven Improvement for Inclusive Digital Learning",
+        "question": "Our HEI provides digital data analysis to help identify students' needs and improve their inclusive digital learning experience. ",
+        "unit_name": "Data-driven improvement of digital learning experience and Inclusiveness evaluation",
+        "unit_link": "#"
+    },
+    {
+        "language": "en",
+        "category": "Assessment Practices/ Inclusion Assessment",
+        "factor": "Data-Driven Improvement for Inclusive Digital Learning",
+        "question": "I evaluation metrics on inclusiveness.",
+        "unit_name": "Data-driven improvement of digital learning experience and Inclusiveness evaluation",
+        "unit_link": "#"
+    },
+    {
+        "language": "en",
+        "category": "Student Digital Competence/ Student's Perspective",
+        "factor": "Inclusive Digital Communication and Skills Development",
+        "question": "In my courses, students learn to communicate in an inclusive way by using digital technologies. ",
+        "unit_name": "Development of Inclusive Digital Skills for Students",
+        "unit_link": "https://set4inclusion.eu/student-digital-competence-students-perspective/development-of-inclusive-digital-skills-for-students/"
+    },
+    {
+        "language": "en",
+        "category": "Student Digital Competence/ Student's Perspective",
+        "factor": "Inclusive Digital Communication and Skills Development",
+        "question": "In my courses, students develop their digital skills and knowledge of inclusive digital education.",
+        "unit_name": "Development of Inclusive Digital Skills for Students",
+        "unit_link": "https://set4inclusion.eu/student-digital-competence-students-perspective/development-of-inclusive-digital-skills-for-students/"
+    },
+    {
+        "language": "en",
+        "category": "Student Digital Competence/ Student's Perspective",
+        "factor": "Inclusive Digital Communication and Skills Development",
+        "question": "In our HEI, students share their awareness about inclusive digital education with other students. ",
+        "unit_name": "Development of Inclusive Digital Skills for Students",
+        "unit_link": "https://set4inclusion.eu/student-digital-competence-students-perspective/development-of-inclusive-digital-skills-for-students/"
+    },
+    {
+        "language": "en",
+        "category": "Student Digital Competence/ Student's Perspective",
+        "factor": "Inclusive Digital Communication and Skills Development",
+        "question": "In our HEI, the list of required skills for inclusive digital education and communication is developed in collaboration with the community (i.e. parents, caregivers, companies, etc.). ",
+        "unit_name": "Development of Inclusive Digital Skills for Students",
+        "unit_link": "https://set4inclusion.eu/student-digital-competence-students-perspective/development-of-inclusive-digital-skills-for-students/"
+    },
+    {
+        "language": "en",
+        "category": "Student Digital Competence/ Student's Perspective",
+        "factor": "Inclusive Digital Communication and Skills Development",
+        "question": "In my classes, students learn how to solve technical problems in inclusive digital education. ",
+        "unit_name": "Development of Inclusive Digital Skills for Students",
+        "unit_link": "https://set4inclusion.eu/student-digital-competence-students-perspective/development-of-inclusive-digital-skills-for-students/"
+    },
+    {
+        "language": "",
+        "category": "",
+        "factor": "",
+        "question": "",
+        "unit_name": "",
+        "unit_link": ""
+    },
+    {
+        "language": "",
+        "category": "",
+        "factor": "",
+        "question": "",
+        "unit_name": "",
+        "unit_link": ""
+    },
+    {
+        "language": "",
+        "category": "",
+        "factor": "",
+        "question": "",
+        "unit_name": "",
+        "unit_link": ""
+    },
+    {
+        "language": "",
+        "category": "",
+        "factor": "",
+        "question": "",
+        "unit_name": "",
+        "unit_link": ""
+    },
+    {
+        "language": "",
+        "category": "",
+        "factor": "",
+        "question": "",
+        "unit_name": "",
+        "unit_link": ""
+    },
+    {
+        "language": "",
+        "category": "",
+        "factor": "",
+        "question": "",
+        "unit_name": "",
+        "unit_link": ""
+    },
+    {
+        "language": "",
+        "category": "",
+        "factor": "",
+        "question": "",
+        "unit_name": "",
+        "unit_link": ""
+    },
+    {
+        "language": "",
+        "category": "",
+        "factor": "",
+        "question": "",
+        "unit_name": "",
+        "unit_link": ""
+    },
+    {
+        "language": "",
+        "category": "",
+        "factor": "",
+        "question": "",
+        "unit_name": "",
+        "unit_link": ""
+    },
+    {
+        "language": "",
+        "category": "",
+        "factor": "",
+        "question": "",
+        "unit_name": "",
+        "unit_link": ""
+    },
+    {
+        "language": "",
+        "category": "",
+        "factor": "",
+        "question": "",
+        "unit_name": "",
+        "unit_link": ""
+    },
+    {
+        "language": "",
+        "category": "",
+        "factor": "",
+        "question": "",
+        "unit_name": "",
+        "unit_link": ""
+    },
+    {
+        "language": "",
+        "category": "",
+        "factor": "",
+        "question": "",
+        "unit_name": "",
+        "unit_link": ""
+    },
+    {
+        "language": "",
+        "category": "",
+        "factor": "",
+        "question": "",
+        "unit_name": "",
+        "unit_link": ""
+    },
+    {
+        "language": "",
+        "category": "",
+        "factor": "",
+        "question": "",
+        "unit_name": "",
+        "unit_link": ""
+    },
+    {
+        "language": "",
+        "category": "",
+        "factor": "",
+        "question": "",
+        "unit_name": "",
+        "unit_link": ""
+    },
+    {
+        "language": "",
+        "category": "",
+        "factor": "",
+        "question": "",
+        "unit_name": "",
+        "unit_link": ""
+    },
+    {
+        "language": "",
+        "category": "",
+        "factor": "",
+        "question": "",
+        "unit_name": "",
+        "unit_link": ""
+    },
+    {
+        "language": "",
+        "category": "",
+        "factor": "",
+        "question": "",
+        "unit_name": "",
+        "unit_link": ""
+    },
+    {
+        "language": "",
+        "category": "",
+        "factor": "",
+        "question": " ",
+        "unit_name": "",
+        "unit_link": ""
+    }
+]

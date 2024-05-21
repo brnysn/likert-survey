@@ -161,8 +161,9 @@
         .category-chart {
             margin: auto;
         }
-        
-        .general-chart, .factor-chart {
+
+        .general-chart,
+        .factor-chart {
             width: 70%;
         }
 
@@ -325,7 +326,7 @@
         </div>
 
         <div class="page-footer"></div>
-    </div>z
+    </div>
 
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script>
@@ -345,18 +346,18 @@
                 window.print();
             }
         }
+
         const getData = async () => {
+            const data_name = window.localStorage.getItem("hei_teachers_occupation") ?? "teacher";
             try {
-                let response = await fetch("./data.json");
+                let response = await fetch(`./${data_name}.json`);
                 let data = await response.json();
                 return data;
             } catch (error) {
                 return [];
             }
         };
-        let storedData = JSON.parse(
-            window.localStorage.getItem("survey-answer")
-        );
+        let storedData = JSON.parse(window.localStorage.getItem("hei_teachers_survey_answer"));
 
         const displayForm = async () => {
             let data = await getData();
@@ -407,17 +408,17 @@
                     foundFactor.items.push(item);
                 });
             }
-            data = combineQuestionsByCategory(data);
+            combineQuestionsByCategory(data);
             data = groupedData;
 
             function assignScoresToItems(groupedData, survey) {
                 let index = 0;
                 groupedData.forEach((languageGroup) => {
                     languageGroup.categories.forEach((categoryGroup) => {
-                        categoryGroup.total_puan = 0;
+                        categoryGroup.total_score = 0;
                         categoryGroup.category_question_count = 0;
                         categoryGroup.factors.forEach((factorGroup) => {
-                            factorGroup.total_puan = 0;
+                            factorGroup.total_score = 0;
                             factorGroup.factor_question_count = 0;
                             factorGroup.items.forEach((item) => {
                                 if (index >= survey.length) return;
@@ -426,11 +427,11 @@
                                     item.puan = survey[index];
                                 }
 
-                                factorGroup.total_puan += parseInt(
+                                factorGroup.total_score += parseInt(
                                     item.puan
                                 );
 
-                                categoryGroup.total_puan += parseInt(
+                                categoryGroup.total_score += parseInt(
                                     item.puan
                                 );
                                 index++;
@@ -452,7 +453,7 @@
 
             const chartContainer = document.createElement("div");
             chartContainer.className = "chart-container";
-            
+
             const categoryChart = document.createElement("div");
             categoryChart.className = "category-chart general-chart";
             categoryChart.style.height = "400px";
@@ -463,14 +464,15 @@
 
             let answer_type_count = 6;
             data[0].categories.forEach((category) => {
-                let category_max_score =
-                    category.category_question_count * answer_type_count;
-                let category_average_percent =
-                    (category.total_puan * 100) / category_max_score;
+                let category_max_score = category.category_question_count * answer_type_count;
+                let category_average_percent = (category.total_score * 100) / category_max_score;
+                // category_average_percent is like 46.666666666666664
+                // we need to round it to 2 decimal places
+                category_average_percent = Math.round(category_average_percent * 100) / 100;
+                category.percent = category_average_percent;
                 categoryLabels.push(category.category);
                 categoryValues.push(category_average_percent);
             });
-
             const backgroundColors = (total) => {
                 let output = [],
                     red = "#E63946",
@@ -582,10 +584,8 @@
                 const unitNames = [];
 
                 perData.factors.forEach((factor) => {
-                    let factor_max_score =
-                        factor.factor_question_count * answer_type_count;
-                    let factor_average_percent =
-                        (factor.total_puan * 100) / factor_max_score;
+                    let factor_max_score = factor.factor_question_count * answer_type_count;
+                    let factor_average_percent = (factor.total_score * 100) / factor_max_score;
 
                     unitNames.push({
                         factor: factor.factor,
@@ -739,26 +739,29 @@
                 accordionDiv.appendChild(canvasContainer);
                 chartPage.appendChild(accordionDiv);
 
-                let suggestionDiv = document.createElement("div");
-                suggestionDiv.className = "suggestions";
-                let h2 = document.createElement("h2");
-                h2.innerText = "Suggestions";
-                suggestionDiv.appendChild(h2);
-                let p = document.createElement("p");
-                p.innerText = "Click to below links to improve yourself:";
-                suggestionDiv.appendChild(p);
-                let ul = document.createElement("ul");
-                unitNames.forEach((unit) => {
-                    let li = document.createElement("li");
-                    let a = document.createElement("a");
-                    a.href = unit.units[0].link;
-                    a.target = "_blank";
-                    a.innerText = unit.units[0].unit_name;
-                    li.appendChild(a);
-                    ul.appendChild(li);
-                });
-                suggestionDiv.appendChild(ul);
-                canvasContainer.appendChild(suggestionDiv);
+                if (perData.percent < 50) {
+                    let suggestionDiv = document.createElement("div");
+                    suggestionDiv.className = "suggestions";
+                    let h2 = document.createElement("h2");
+                    h2.innerText = "Suggestions";
+                    suggestionDiv.appendChild(h2);
+                    let p = document.createElement("p");
+                    p.innerText = "Click to below links to improve yourself:";
+                    suggestionDiv.appendChild(p);
+                    let ul = document.createElement("ul");
+                    unitNames.forEach((unit) => {
+                        let li = document.createElement("li");
+                        let a = document.createElement("a");
+                        a.href = unit.units[0].link;
+                        a.target = "_blank";
+                        a.innerText = unit.units[0].unit_name;
+                        li.appendChild(a);
+                        ul.appendChild(li);
+                    });
+                    suggestionDiv.appendChild(ul);
+                    canvasContainer.appendChild(suggestionDiv);
+                }
+
             });
         };
 
