@@ -1,4 +1,67 @@
 let surveyLanguage = "en"; // Default language is "en"
+const translations = {
+    "en": {
+        "next": "Next",
+        "submit": "Submit",
+        "notApplicable": "Not applicable",
+        "stronglyAgree": "Strongly agree",
+        "agree": "Agree",
+        "slightlyAgree": "Slightly agree",
+        "disagree": "Disagree",
+        "stronglyDisagree": "Strongly disagree"
+    },
+    "it": {
+        "next": "Avanti",
+        "submit": "Invia",
+        "notApplicable": "Non applicabile",
+        "stronglyAgree": "Concordo fortemente",
+        "agree": "Concordo",
+        "slightlyAgree": "Concordo parzialmente",
+        "disagree": "Non concordo",
+        "stronglyDisagree": "Non concordo affatto"
+    },
+    "pt": {
+        "next": "Próximo",
+        "submit": "Enviar",
+        "notApplicable": "Não aplicável",
+        "stronglyAgree": "Concordo plenamente",
+        "agree": "Concordo",
+        "slightlyAgree": "Concordo parcialmente",
+        "disagree": "Discordo",
+        "stronglyDisagree": "Discordo totalmente"
+    },
+    "sl": {
+        "next": "Naprej",
+        "submit": "Pošlji",
+        "notApplicable": "Ni veljavno",
+        "stronglyAgree": "Močno se strinjam",
+        "agree": "Se strinjam",
+        "slightlyAgree": "Delno se strinjam",
+        "disagree": "Se ne strinjam",
+        "stronglyDisagree": "Se sploh ne strinjam"
+    },
+    "es": {
+        "next": "Siguiente",
+        "submit": "Enviar",
+        "notApplicable": "No aplicable",
+        "stronglyAgree": "Totalmente de acuerdo",
+        "agree": "De acuerdo",
+        "slightlyAgree": "Parcialmente de acuerdo",
+        "disagree": "En desacuerdo",
+        "stronglyDisagree": "Totalmente en desacuerdo"
+    },
+    "tr": {
+        "next": "İleri",
+        "submit": "Kaydet",
+        "notApplicable": "Uygulanamaz",
+        "stronglyAgree": "Kesinlikle katılıyorum",
+        "agree": "Katılıyorum",
+        "slightlyAgree": "Kısmen katılıyorum",
+        "disagree": "Katılmıyorum",
+        "stronglyDisagree": "Kesinlikle katılmıyorum"
+    }
+};
+
 document.getElementById("error").style.display = "none";
 document.getElementsByClassName("survey-intro")[0].addEventListener("change", function () {
     var university = document.getElementById("university").value;
@@ -37,8 +100,7 @@ let startButton = document.getElementById("startButton");
 
 startButton.addEventListener("click", function (event) {
     event.preventDefault();
-    // surveyLanguage = document.getElementById("country").value;
-    // "en" is the default language for now
+    surveyLanguage = document.getElementById("country").value;
 
     displayForm();
 
@@ -101,16 +163,21 @@ const displayForm = async () => {
     const inputReferences = [];
 
     function showPage(pageIndex) {
+        let translationsForLanguage = translations[surveyLanguage];
+        if (!translationsForLanguage) {
+            translationsForLanguage = translations["en"];
+        }
+
         const category = data[pageIndex];
         formContainer.innerHTML = `<div class="survey-options d-grid-2">
                                         <div><h2>${category.category}</h2></div>
                                         <div class="d-grid-5 d-none d-md-flex">
-                                            <div><h4>Not applicable</h4></div>
-                                            <div><h4>Strongly agree</h4></div>
-                                            <div><h4>Agree</h4></div>
-                                            <div><h4>Slightly agree</h4></div>
-                                            <div><h4>Disagree</h4></div>
-                                            <div><h4>Strongly disagree</h4></div>
+                                            <div><h4>${translationsForLanguage.notApplicable}</h4></div>
+                                            <div><h4>${translationsForLanguage.stronglyAgree}</h4></div>
+                                            <div><h4>${translationsForLanguage.agree}</h4></div>
+                                            <div><h4>${translationsForLanguage.slightlyAgree}</h4></div>
+                                            <div><h4>${translationsForLanguage.disagree}</h4></div>
+                                            <div><h4>${translationsForLanguage.stronglyDisagree}</h4></div>
                                         </div>
                                     </div>`;
 
@@ -128,7 +195,7 @@ const displayForm = async () => {
                         <input type="radio" id=${pageIndex}-${key}-0 class="color-0" name=mark-${pageIndex}-${key} value="0" />
                         <label for=${pageIndex}-${key}-0 >
                             <span><img src="check.svg" alt="Checked Icon" /></span>
-                            <p>Not applicable</p>
+                            <p>${translationsForLanguage.notApplicable}</p>
                         </label>
                     </div>                       
                 
@@ -136,39 +203,35 @@ const displayForm = async () => {
                         <input type="radio" id=${pageIndex}-${key}-1 class="color-1" name=mark-${pageIndex}-${key} value="5" />
                         <label for=${pageIndex}-${key}-1 >
                             <span><img src="check.svg" alt="Checked Icon" /></span>
-                            <p>Strongly agree 
-                            </p>
+                            <p>${translationsForLanguage.stronglyAgree}</p>
                         </label>
                     </div>
                     <div>
                         <input type="radio" id=${pageIndex}-${key}-2  class="color-2" name=mark-${pageIndex}-${key} value="4" />
                         <label for=${pageIndex}-${key}-2 >
                                <span><img src="check.svg" alt="Checked Icon" /></span>
-                            <p>Agree</p>
+                            <p>${translationsForLanguage.agree}</p>
                         </label>
                     </div>
                     <div>
                         <input type="radio" id=${pageIndex}-${key}-3  class="color-3" name=mark-${pageIndex}-${key} value="3" />
                         <label for=${pageIndex}-${key}-3 >
                                <span><img src="check.svg" alt="Checked Icon" /></span>
-                            <p>Slightly agree
- 
-                            </p>
+                            <p>${translationsForLanguage.slightlyAgree}</p>
                         </label>
                     </div>
                     <div>
                         <input type="radio" id=${pageIndex}-${key}-4 class="color-4" name=mark-${pageIndex}-${key} value="2" />
                         <label for=${pageIndex}-${key}-4>
                                <span><img src="check.svg" alt="Checked Icon" /></span>
-                            <p>Disagree</p>
+                            <p>${translationsForLanguage.disagree}</p>
                         </label>
                     </div>
                     <div>
                         <input type="radio" id=${pageIndex}-${key}-5 class="color-5" name=mark-${pageIndex}-${key} value="1" />
                         <label for=${pageIndex}-${key}-5>
                                <span><img src="check.svg" alt="Checked Icon" /></span>
-                            <p>Strongly disagree (we don’t do that)
-                            </p>
+                            <p>${translationsForLanguage.stronglyDisagree}</p>
                         </label>
                     </div>
                 </div>
@@ -185,11 +248,11 @@ const displayForm = async () => {
         formContainer.appendChild(page);
 
         const nextButton = document.createElement("button");
-        nextButton.textContent = "Next";
+        nextButton.textContent = translationsForLanguage.next;
         nextButton.disabled = true; // Disable the nextButton initially
 
         const submitButton = document.createElement("button");
-        submitButton.textContent = "Submit";
+        submitButton.textContent = translationsForLanguage.submit;
         submitButton.style.display = "none";
         submitButton.disabled = true; // Disable the nextButton initially
 
